@@ -16,8 +16,8 @@ const Header = () => {
           <Image className="logo"
             src="/images/Stickeando-icon.webp"
             alt="Logo"
-            width={55}
-            height={55}
+            width={60}
+            height={60}
           />
           <div>
             <div className="menuLinks">
@@ -34,12 +34,21 @@ const Header = () => {
 
               {!user ? (
                 // No autenticado
-                <Link 
-                className="login"
-                href="/login"
-                >
-                  Iniciar sesión
-                </Link>
+                <div className="newUser">
+                  <Link 
+                  className="register"
+                  href="/register"
+                  >
+                    Registrarme
+                  </Link>
+
+                  <Link 
+                  className="login"
+                  href="/login"
+                  >
+                    Iniciar sesión
+                  </Link>
+                </div>
               ) : (
                 <div>
                   {/* Foto y nombre */}

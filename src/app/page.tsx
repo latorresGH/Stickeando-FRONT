@@ -1,9 +1,10 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import  Header  from "@/components/Header";
+import { UserProvider } from "@/context/authContext";
+import "./globals.css";
 
-export default function Home() {
+export default function Page() {
   return (
-    <Header></Header>
+    <div></div>
   );
 }
