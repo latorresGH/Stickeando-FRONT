@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+.containerBackground {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Asegura que la imagen no desborde el contenedor */
+}
+
+.containerBackground .background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+    object-position: center; /* Centra la imagen */
+    filter: brightness(0.5); /* Ajusta el brillo de la imagen */
+    z-index: 0;
+}
+
+.tittle {
+    font-family: "Inter", serif;
+    position: absolute; /* Coloca el texto encima de la imagen */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el punto de origen al centro */
+    color: white; /* Color del texto */
+    font-size: 6.5rem; /* Ajusta el tamaño según sea necesario */
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 50px rgb(0, 0, 0); /* Agrega sombra para mejor visibilidad */
+    transition: all 0.3s ease;
+  }
+
+  .tittle:hover {
+    color: rgb(33, 33, 33);
+    font-size: 6.8rem; /* Ajusta el tamaño según sea necesario */
+  }
+  
+  .subtittle {
+    font-family: "Inter", serif;
+    position: absolute;
+    top: 56%; /* Coloca debajo del título */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    text-shadow: 2px 2px 50px rgb(0, 0, 0); /* Agrega sombra para mejor visibilidad */
+  }
+
+  .arrowContainer {
+    position: absolute;
+    bottom: 20px; /* Ubica la flecha cerca del borde inferior */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .arrowIcon {
+    width: 40px; /* Ajusta el tamaño de la flecha */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Efecto al pasar el mouse */
+  }
+  
+  .arrowIcon:hover {
+    transform: scale(1.2); /* Agranda la flecha al pasar el mouse */
+  }

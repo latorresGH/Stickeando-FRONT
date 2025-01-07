@@ -1,0 +1,19 @@
+.categories {
+    display: flex;
+    gap: 7.5vw;
+    justify-content: center;
+}
+
+.categoriaSeccion {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.categoriaSeccion img{
+    cursor: pointer
+    ;
+}
+
+.textCategories {
+    text-align: center;
+}

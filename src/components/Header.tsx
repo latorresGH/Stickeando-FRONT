@@ -8,13 +8,13 @@ import Image from "next/image";
 
 const Header = () => {
   const { user } = useUser();
-
+  console.log(user);
   return (
     <header className="header">
       <nav className="navHeader">
         <ul className="menu">
           <Image className="logo"
-            src="/images/Stickeando-icon.webp"
+            src="/images/logo-stickeando.png"
             alt="Logo"
             width={60}
             height={60}
@@ -49,24 +49,31 @@ const Header = () => {
                     Iniciar sesión
                   </Link>
                 </div>
-              ) : (
-                <div>
-                  {/* Foto y nombre */}
-                  {user.foto_perfil ? (
-                    <img src={user.foto_perfil} alt={user.nombre} />
-                  ) : (
-                    <span>{user.nombre[0].toUpperCase()}</span>
-                  )}
-                  <span>{user.nombre}</span>
+) : (
+  <div className="userMenu">
+    {/* Nombre del usuario */}
+    <span>{user.nombre || "Usuario"}</span>
 
-                  {/* Mostrar "Panel administrador" solo si es administrador */}
-                  {user.rol === "administrador" && (
-                    <Link href="/admin">
-                      Panel administrador
-                    </Link>
-                  )}
-                </div>
-              )}
+    {/* Foto de perfil */}
+    {user.foto_perfil ? (
+          <img 
+          className="profilePic"
+          src={`http://localhost:3001${user.foto_perfil}`} 
+          alt={`Foto de perfil de ${user.nombre || "usuario"}`} 
+        />
+    ) : (
+      <span>{user.nombre ? user.nombre[0].toUpperCase() : "?"}</span>
+    )}
+
+    {/* Mostrar "Panel administrador" solo si es administrador */}
+    {user.rol === "administrador" && (
+      <Link href="/admin">
+        Panel administrador
+      </Link>
+    )}
+  </div>
+)
+}
             </div>
           </div>
         </ul>
