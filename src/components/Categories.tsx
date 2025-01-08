@@ -12,6 +12,7 @@ const Categories = () => {
 
       <div className={style.categories}>
         <div className={style.categoriaSeccion}>
+          <div className={style.categoriaSeccionImage1}>
             <Image
             src="/images/CategoriaSimpsons.png"
             alt="Imagen categoria los Simpsons"
@@ -19,10 +20,12 @@ const Categories = () => {
             width={300}
             height={300}
             />
+          </div>
             <p>Los Simpsons</p>
         </div>
 
         <div className={style.categoriaSeccion}>
+          <div className={style.categoriaSeccionImage2}>
             <Image
             src="/images/CategoriaAnimados.png"
             alt="Imagen categoria animados"
@@ -30,10 +33,12 @@ const Categories = () => {
             width={300}
             height={300}
             />
+          </div>
             <p>Animados</p>
         </div>
 
         <div className={style.categoriaSeccion}>
+          <div className={style.categoriaSeccionImage3}>
             <Image
             src="/images/CategoriaArgentinos.png"
             alt="Imagen categoria Argentinos"
@@ -41,10 +46,12 @@ const Categories = () => {
             width={300}
             height={300}
             />
+          </div>
             <p>Argentinos</p>
         </div>
 
         <div className={style.categoriaSeccion}>
+          <div className={style.categoriaSeccionImage4}>
             <Image
             src="/images/CategoriaSignos.png"
             alt="Imagen categoria de Signos"
@@ -52,8 +59,23 @@ const Categories = () => {
             width={300}
             height={300}
             />
+          </div>
             <p>Signos</p>
         </div>
+      </div>
+
+      <div className={style.buttonSection}>
+        <button className={style.button}>
+          <a href="/products">Todos los productos</a>
+
+          <Image
+            className={style.image}
+            src="/images/cursor.png"
+            alt="Flecha"
+            width={50}
+            height={50}
+          />
+        </button>
       </div>
     </div>
   );

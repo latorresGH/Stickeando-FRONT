@@ -1,5 +1,5 @@
 .header {
-    position: fixed; /* Fijo en la pantalla */
+    position: absolute; /* <-------- cambiar a fixed si queremos que la navbar este pegada cuando bajamos
     top: 0; /* Pegado al borde superior */
     left: 0; /* Pegado al borde izquierdo */
     width: 100%; /* Ocupa el ancho completo */

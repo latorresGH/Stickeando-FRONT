@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    font-family: "Inter", serif;
+}
+
+.categoriesContainer {
+    width: 100vw;
+    height: 100vh;
+}
+
 .categories {
     display: flex;
     gap: 7.5vw;
@@ -10,10 +21,118 @@
 }
 
 .categoriaSeccion img{
-    cursor: pointer
-    ;
+    cursor: pointer;
+    width: 13vw;
+    height: 26vh;
+}
+
+.categoriaSeccion p {
+    color: rgb(63, 63, 63);
+    font-family: "Inter", serif;
+    font-size: 1.5rem;
+    margin-top: 1vh;
+    font-weight: 600;
 }
 
 .textCategories {
     text-align: center;
+    margin: 12vh 0 12vh 0;
+}
+
+.textCategories h2 {
+    font-family: "Inter", serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.textCategories span {
+    font-family: "Inter", serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(129, 129, 129);
+}
+
+.buttonSection {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    margin-top: 15vh;
+    position: relative; /* Para posicionar la imagen dentro del botón */
+    display: inline-block;
+    padding: 0.5vh 1vw;
+    font-size: 3rem;
+    font-weight: 700;
+    background-color: #b2b2b241;
+    border: transparent;
+    transition: all 0.3s ease;
+    border-radius: 9px;
+}
+
+.image {
+    height: 4.5vh;
+    width: 2vw;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(90%, 80%); 
+    transition: all 0.3s ease;
+}
+
+.button:hover .image {
+    transform: translate(70%, 70%); 
+}
+
+.button:hover {
+    box-shadow: 0 0 0px 2px #2a2a2a29;
+}
+
+.button a {
+    font-family: "Inter", serif;
+    color: rgb(60, 60, 60);
+}
+
+.categoriaSeccionImage1 {
+    border: 0px transparent;
+    border-radius: 50%;
+    display: flex;
+    transition: all 0.5s ease;
+}
+
+.categoriaSeccionImage1:hover {
+    box-shadow: 0 0 10px 8px #b27d7d;
+}
+
+.categoriaSeccionImage2 {
+    border: 0px transparent;
+    border-radius: 50%;
+    display: flex;
+    transition: all 0.5s ease;
+}
+
+.categoriaSeccionImage2:hover {
+    box-shadow: 0 0 10px 8px #ff82ecb3;
+}
+
+.categoriaSeccionImage3 {
+    border: 0px transparent;
+    border-radius: 50%;
+    display: flex;
+    transition: all 0.5s ease;
+}
+
+.categoriaSeccionImage3:hover {
+    box-shadow: 0 0 10px 8px #81c4ffb3;
+}
+
+.categoriaSeccionImage4 {
+    border: 0px transparent;
+    border-radius: 50%;
+    display: flex;
+    transition: all 0.5s ease;
+}
+
+.categoriaSeccionImage4:hover {
+    box-shadow: 0 0 10px 8px #00224067;
 }
