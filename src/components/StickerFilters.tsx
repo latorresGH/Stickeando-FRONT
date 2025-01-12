@@ -25,25 +25,37 @@ const CategoryFilterPanel: React.FC<CategoryFilterPanelProps> = ({ onFilter }) =
 
     return (
         <div className={style.filterContenedor}>
-            <h3>Filtrar por Categoría</h3>
-            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)}>
-                <option value="">Todas</option>
-                {categories.map(category => (
-                    <option key={category.id} value={category.id.toString()}>
-                        {category.nombre}
-                    </option>
-                ))}
-            </select>
-
-            <h3>Buscar</h3>
-            <input 
+            <input
+                className={style.searchInput}
                 type="text" 
                 value={searchQuery} 
                 onChange={e => setSearchQuery(e.target.value)} 
                 placeholder="Buscar productos..." 
             />
 
-            <button onClick={handleFilter}>Aplicar Filtros</button>
+            <p className={style.textCategorias}>Filtrar por Categoría</p>
+            <div className={style.categoryContainer}>
+                <div
+                    onClick={() => setSelectedCategory('')}
+                    className={`${style.categoryItem} ${selectedCategory === '' ? style.selected : ''}`}
+                >
+                    Todas
+                </div>
+                {categories.map(category => (
+                    <div
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id.toString())}
+                    className={`${style.categoryItem} ${selectedCategory === category.id.toString() ? style.selected : ''}`}
+                    >
+                    {category.nombre}
+                    </div>
+                ))}
+                </div>
+
+
+
+
+            <button onClick={handleFilter} className={style.buttonAplicar}>Aplicar Filtros</button>
         </div>
     );
 };

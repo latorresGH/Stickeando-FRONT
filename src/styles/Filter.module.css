@@ -1,9 +1,79 @@
 .filterContenedor {
     background: white;
     width: 18vw;
+    height: 83.5vh;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: white;
     margin: 2vh 2vw;
 }
+
+.searchInput {
+    width: 100%;
+    height: 4vh;
+    border-radius: 4px;
+    border: 1px solid;
+    padding: 4px;
+    font-size: 1rem;
+    margin-bottom: 2vh;
+    outline: none;
+}
+
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Espacio entre las categorías */
+}
+
+.categoryItem {
+  cursor: pointer; /* Hace que los elementos sean clickeables */
+  position: relative; /* Necesario para posicionar la barra debajo */
+  color: rgb(105, 105, 105);
+  transition: all 0.3s ease;
+}
+
+.categoryItem::after {
+  content: ''; /* Necesario para crear un pseudo-elemento */
+  position: absolute;
+  bottom: 0; /* Posiciona la barra en la parte inferior */
+  left: 0;
+  width: 0%; /* Inicialmente la barra tiene un ancho de 0 */
+  height: 2px; /* Grosor de la barra */
+  background-color: black; /* Color de la barra */
+  transition: width 0.5s ease; /* Transición suave del ancho */
+}
+
+.categoryItem.selected, .categoryItem:hover {
+  font-weight: bold; /* Cambia el estilo cuando se pasa el mouse o está seleccionado */
+  color: rgb(19, 19, 19);
+}
+
+.categoryItem.selected::after,
+.categoryItem:hover::after {
+  width: 20%; /* Ajusta el ancho de la barra cuando está en hover o seleccionado */
+}
+
+
+
+
+  .textCategorias{
+    font-weight: 700;
+    margin-bottom: 0.5vh;
+  }
+
+  .buttonAplicar {
+    background: none;
+    border-radius: 4px;
+    height: 4vh;
+    width: 8vw;
+    border: 1px solid black;
+    margin-top: 1vh;
+    transition: all .5s ease;
+  }
+
+  .buttonAplicar:hover {
+    background: rgb(243, 106, 106);
+    color: white;
+    border: 1px solid white;
+  }

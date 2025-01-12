@@ -2,15 +2,15 @@
 
 import React from "react";
 import { useUser } from "@/context/authContext";
-import "@/styles/header.css";
+import "@/styles/headertwo.css";
 import Link from "next/link";
 import Image from "next/image";
 
-const Header = () => {
+const HeaderTwo = () => {
   const { user } = useUser();
   console.log(user);
   return (
-    <header className="header">
+    <header className="header2">
       <nav className="navHeader">
         <ul className="menu">
           <Link href="/home">
@@ -74,4 +74,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderTwo;

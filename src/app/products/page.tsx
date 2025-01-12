@@ -1,12 +1,10 @@
-import Header from "@/components/Header";
 import ProductCatalog from "@/components/ProductCatalog";
-import Background from "@/components/Background";
+import HeaderTwo from "@/components/HeaderTwo";
 
 export default function Products () {
   return (
     <div>
-      <Header></Header>
-      <Background></Background>
+      <HeaderTwo></HeaderTwo>
       <ProductCatalog></ProductCatalog>
     </div>
   );
