@@ -1,0 +1,9 @@
+.filterContenedor {
+    background: white;
+    width: 18vw;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin: 2vh 2vw;
+}
