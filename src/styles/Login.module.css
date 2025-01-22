@@ -50,6 +50,14 @@
     width: 16vw;
     border-bottom: 1px solid #0e0e0e; /* Color del borde cuando el input está en foco */
   }
+
+  .inputIcons {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 42%;
+  }
+ 
   
   .error {
 

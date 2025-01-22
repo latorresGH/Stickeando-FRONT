@@ -1,0 +1,118 @@
+/* Estilo general para el header */
+.header {
+    color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #eeeeee;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-right: 2px solid #dfdfdf;
+  }
+  
+  /* Estilo para el logo */
+  .logoContainer {
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* Contenedor de la información del usuario */
+  .userInfo {
+    margin-bottom: 30px;
+    text-align: left;
+  }
+  
+  .authLinks {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .authLinks a {
+    color: black;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  .authLinks a:hover {
+    color: #f4a261;
+  }
+  
+  .userDetails {
+    display: flex;
+    align-items: flex-start;
+    align-items: center;
+  }
+  
+  .userName {
+    margin-bottom: 10px;
+  }
+  
+  .profilePic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-right: 0.3vw;
+  }
+  
+  .initials {
+    background-color: #888;
+    color: black;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .adminPanelLink {
+    color: black;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+  
+  .adminPanelLink:hover {
+    color: #f4a261;
+  }
+  
+  /* Estilo para los enlaces de navegación */
+  .navLinks {
+    margin-top: auto;
+  }
+  
+  .navLinks li {
+    list-style-type: none;
+    margin: 10px 0;
+  }
+  
+  .navLinks a {
+    color: #141414;
+    text-decoration: none;
+    transition: all 0.5s ease;
+  }
+  
+  .navLinks a:hover {
+    color: #000000;
+    font-weight: bold;
+  }
+  
+  .svgs {
+    width: 2.5vw;
+    height: 2.5vh;
+  }
+
+  .navLinks li {
+    display: flex;
+    align-items: center;
+  }

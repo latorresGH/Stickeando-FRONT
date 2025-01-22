@@ -18,6 +18,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   // Cargar usuario al iniciar
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+
+    if (storedToken) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+    }
+
     if (storedToken) {
       console.log("Token encontrado:", storedToken); // Depuración
       axios
