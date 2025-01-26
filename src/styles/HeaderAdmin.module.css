@@ -4,9 +4,9 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px;
+    width: 15vw;
     height: 100vh;
-    background-color: #eeeeee;
+    background-color: #fafafa;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -102,14 +102,20 @@
     transition: all 0.5s ease;
   }
   
-  .navLinks a:hover {
-    color: #000000;
+  li:hover a {
+    color: #e41f1f;
     font-weight: bold;
+  }
+
+  li:hover .svgs {
+    transform: scale(1.1); /* Agranda el SVG al 120% */
+    transition: transform 0.3s ease; /* Transición suave */
   }
   
   .svgs {
-    width: 2.5vw;
-    height: 2.5vh;
+    width: 2.8vw; /* Tamaño inicial del SVG */
+    height: 2.8vh; /* Tamaño inicial del SVG */
+    transition: transform 0.3s ease; /* Suaviza la transición */
   }
 
   .navLinks li {

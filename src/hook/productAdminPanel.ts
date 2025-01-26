@@ -6,49 +6,49 @@ import { Categoria } from '@/types/Categoria';
 
 export const useAdminPanel = () => {
   const [products, setProducts] = useState<Producto[]>([]);
-  const [categories, setCategories] = useState<Categoria[]>([]);  // Estado para las categorías
+  const [categories, setCategories] = useState<Categoria[]>([]);
   const [newProduct, setNewProduct] = useState<{ title: string; price: string; categoryIds: string[]; imageUrl: File | null }>({
     title: '',
     price: '',
     categoryIds: [],
     imageUrl: null
   });
+  const [successMessage, setSuccessMessage] = useState<string>(''); // Mensaje de éxito
+  const [loading, setLoading] = useState<boolean>(false); // Estado de carga
 
   useEffect(() => {
     fetchProducts();
-    fetchCategories();  // Cargar las categorías desde la nueva ruta
+    fetchCategories();
   }, []);
 
-  // Obtener productos
   const fetchProducts = async () => {
     try {
       const response = await axios.get<Producto[]>('http://localhost:3001/api/productos/list');
       setProducts(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error fetching products:', error);
-      setProducts([]); // En caso de error, asegurarse de que products sea un array vacío
+      setProducts([]);
     }
   };
 
-  // Obtener categorías
   const fetchCategories = async () => {
     try {
       const response = await axios.get<Categoria[]>('http://localhost:3001/api/categorias/all');
-      setCategories(response.data); // Guardamos las categorías en el estado
+      setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
   };
 
-  // Crear un producto
   const handleCreateProduct = async () => {
     const { title, price, categoryIds, imageUrl } = newProduct;
     if (!title || !price || !categoryIds.length || !imageUrl) return;
 
+    setLoading(true); // Iniciar carga
     const formData = new FormData();
     formData.append('titulo', title);
     formData.append('precio', price);
-    formData.append('categoria_id', categoryIds.join(',')); // Enviar múltiples categorías como una cadena separada por comas
+    formData.append('categoria_id', categoryIds.join(','));
     formData.append('imagen_url', imageUrl);
 
     try {
@@ -57,12 +57,15 @@ export const useAdminPanel = () => {
       });
       setProducts([...products, response.data.product]);
       setNewProduct({ title: '', price: '', categoryIds: [], imageUrl: null });
+      setSuccessMessage('Producto subido correctamente'); // Mostrar mensaje de éxito
     } catch (error) {
       console.error('Error creating product:', error);
+      setSuccessMessage('Hubo un error al subir el producto'); // Mensaje de error
+    } finally {
+      setLoading(false); // Finalizar carga
     }
   };
 
-  // Manejo de cambio en los checkboxes
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
     setNewProduct(prevState => {
@@ -73,7 +76,6 @@ export const useAdminPanel = () => {
     });
   };
 
-  // Eliminar producto
   const handleDeleteProduct = async (id: number) => {
     try {
       await axios.delete(`http://localhost:3001/api/productos/delete/${id}`);
@@ -92,6 +94,8 @@ export const useAdminPanel = () => {
     fetchCategories,
     handleCreateProduct,
     handleCheckboxChange,
-    handleDeleteProduct
+    handleDeleteProduct,
+    successMessage, // Agregar el mensaje de éxito
+    loading, // Agregar el estado de carga
   };
 };

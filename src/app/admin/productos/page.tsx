@@ -1,6 +1,6 @@
 import AdminPanel from "@/components/AdminPanel"
-import CategoryManager from "@/components/CategoryManager"
 import HeaderAdmin from "@/components/HeaderAdmin"
+import DeleteProduct from "@/components/DeleteProduct"
 import style from '@/styles/AdminPage.module.css'
 
 export default function () {
@@ -10,10 +10,11 @@ export default function () {
                 <HeaderAdmin></HeaderAdmin>
             </div>
             <div className={style.headerStickers}>
-                    Administrador
+                    Administrador stickers
                 </div>
             <div className={style.panelDerecho}>
-                <h1>Bienvenido admin</h1>
+                <AdminPanel></AdminPanel>
+                <DeleteProduct></DeleteProduct>
             </div>
         </div>
     )

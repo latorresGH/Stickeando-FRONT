@@ -1,0 +1,120 @@
+.contenedor {
+    background-color: white;
+    border-radius: 15px;
+    padding: 2vh;
+    width: 25vw;
+    min-height: 35vh; /* Altura mínima, crecerá dinámicamente con el contenido */
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 600px;
+    box-sizing: border-box;
+    transition: all 0.5s ease;
+  }
+
+.contenedor:hover {
+  box-shadow: 4px 4px 15px rgba(10, 122, 0, 0.2);
+}
+
+.titulo {
+  font-size: 1.2rem;
+  margin-left: 0.5vw;
+}
+
+.inputsProducto {
+  padding: 0.8vh 1vw;
+  border-radius: 4px;
+  border: 1px solid black;
+  margin: 1vh 0.2vw;
+}
+
+.uploadButton {
+  cursor: pointer;
+  padding: 0.8vh 1vw;
+  border: 1px solid black;
+  border-radius: 4px;
+  color: #212121;
+  z-index: 1;
+  background: #ffffff;
+  position: relative;
+  font-size: 13px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+.uploadButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 4px;
+  background-color: #212121;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+.uploadButton:hover {
+  color: #e8e8e8;
+}
+
+.uploadButton:hover::before {
+  width: 100%;
+}
+
+.cajaInput {
+    margin: 1vh 0 0 1vw; /* Elimina márgenes de la lista */
+}
+
+.lista {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    margin: 1vh 0 0 1vw; /* Elimina márgenes de la lista */
+    padding: 0; /* Elimina el padding de la lista */
+    width: 100%; /* Asegúrate de que la lista ocupe todo el ancho disponible */
+  }
+  
+  .lista li {
+    margin-bottom: 10px; /* Espaciado entre elementos de la lista */
+    display: inline-block; /* Asegúrate de que el texto sea un elemento de bloque en línea */
+    cursor: pointer; /* Cambia el cursor al estilo de un botón */
+    color: #212121; /* Color inicial del texto */
+    transition: color 0.3s ease, transform 0.2s ease; /* Transición suave para color y escala */
+    font-weight: 500; /* Opcional: Da un estilo más fuerte al texto */
+  }
+
+  .buttonBorrar {
+    height: 3vh;
+    margin: 0 0.4vw 0 0;
+    padding: 5px;
+    border-radius: 4px;
+    background: none;
+    border: 1px solid black;
+    transition: all 0.5s ease;
+  }
+
+  .buttonBorrar:hover {
+    background-color: rgb(255, 60, 60); /* Cambia el texto a rojo al pasar el mouse */
+    transform: scale(1.07); /* Aumenta un poco el tamaño del texto para el hover */
+    color: white;
+    border: none;
+    border: 1px solid white;
+  }
+
+  .cajaLista {
+    max-width: 100%; /* Evita desbordes horizontales */
+    word-wrap: break-word; /* Ajusta palabras largas */    
+    padding: 10px; /* Espaciado interno */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Incluye padding en el cálculo de tamaño */
+    
+  }
+
+  .deteleTittle {
+    font-size: 1rem;
+  }

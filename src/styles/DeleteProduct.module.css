@@ -1,0 +1,80 @@
+.container {
+  background-color: white;
+  border-radius: 15px;
+  padding: 2vh;
+  width: 35vw;
+  height: 46vh;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  transition: all 0.5s ease;
+  flex-direction: column;
+  }
+
+  .container:hover {
+    box-shadow: 4px 4px 15px rgba(255, 0, 0, 0.219);
+  }
+  
+  .title {
+    text-align: center;
+  }
+  
+  .searchContainer {
+    margin-bottom: 16px;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .loading {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .productList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .productCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  .productName {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .productId {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .deleteButton {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #e63946;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .deleteButton:hover {
+    background-color: #d62839;
+  }
+  

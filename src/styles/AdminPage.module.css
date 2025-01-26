@@ -1,0 +1,23 @@
+.panelDerecho {
+    margin-left: 18vw;
+    display: flex;
+    gap: 2vw;
+    height: 100vh;
+}
+
+.contenedorPage {
+    padding-bottom: 4.5vh;
+    background-color: rgb(238, 238, 238);
+}
+
+.headerStickers {
+    font-size: 1.4rem;
+    font-weight: bold;
+    height: 9vh;
+    padding-left: 17vw;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #dfdfdf;
+    background-color: #fafafa;
+    margin-bottom: 4.5vh;
+}
