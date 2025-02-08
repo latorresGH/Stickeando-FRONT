@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { UserProvider } from "@/context/authContext";
+import axios from "axios";
+
+// Habilita el envío de cookies en todas las peticiones con Axios
+axios.defaults.withCredentials = true;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -6,5 +6,6 @@ export interface Usuario {
     foto_perfil?: string;  // Foto del perfil, opcional
     rol: 'administrador' | 'usuario'; // Rol del usuario
     creado_en: string; // Fecha de creación del usuario
+    uuid?: string;  // Esto asegura que `uuid` sea opcional
   }
   

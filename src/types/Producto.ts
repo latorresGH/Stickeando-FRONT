@@ -4,4 +4,5 @@ export interface Producto {
     precio: number,
     imagen_url: string,
     categoria_id: number,
+    carrito_id?: number;
 }

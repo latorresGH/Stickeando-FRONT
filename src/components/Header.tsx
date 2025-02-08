@@ -4,18 +4,34 @@ import React, { useState, useRef, useEffect } from "react";
 import { useUser } from "@/context/authContext";
 import Link from "next/link";
 import Image from "next/image";
-import styles from '@/styles/Header.module.css'
+import Cookies from "js-cookie"; // Importamos js-cookie para manejar cookies
+import styles from '@/styles/Header.module.css';
 
 const Header = () => {
   const { user } = useUser();
-  
+  const [carritoUuid, setCarritoUuid] = useState<string | null>(null);
+
+  useEffect(() => {
+    let storedUuid = Cookies.get("carrito_uuid"); // Obtenemos la cookie
+
+    if (!storedUuid) {
+      storedUuid = crypto.randomUUID(); // Genera un UUID si no existe
+      Cookies.set("carrito_uuid", storedUuid, { expires: 7, path: "/" }); // Guarda el UUID en la cookie
+    }
+
+    setCarritoUuid(storedUuid);
+  }, []);
+
+  // Se usa el carritoUuid si el usuario no está logueado
+  const carritoLink = user ? `/carrito/${user.id}` : `/carrito/${carritoUuid}`;
+
   // Estado para controlar la visibilidad del menú
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   // Referencia al menú desplegable para detectar clics fuera de él
   const menuRef = useRef<HTMLDivElement | null>(null);
   const photoRef = useRef<HTMLImageElement | null>(null);
-  
+
   // Función para manejar el clic en la foto de perfil
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -56,6 +72,9 @@ const Header = () => {
               </li>
               <li className={styles.active}>
                 <Link href="/contacto">Contacto</Link>
+              </li>
+              <li>
+                <Link href={carritoLink}>Mi carrito</Link> {/* Enlace corregido aquí */}
               </li>
 
               {!user ? (
