@@ -1,30 +1,38 @@
 .header {
-    position: absolute; /* <-------- cambiar a fixed si queremos que la navbar este pegada cuando bajamos
+    position: fixed; /* <-------- cambiar a fixed si queremos que la navbar este pegada cuando bajamos
     top: 0; /* Pegado al borde superior */
     left: 0; /* Pegado al borde izquierdo */
     width: 100%; /* Ocupa el ancho completo */
     background-color: transparent; /* Sin fondo */
     padding: 1vh;
     z-index: 10; /* Asegura que quede encima de otros elementos */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.553), rgba(0, 0, 0, 0)); /* Degradado de oscuro a transparente */
+    background: rgb(9, 9, 9);
     color: rgb(219, 219, 219);
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.carritoLink {
+  width: 1.4vw;
+  height: 5vh;
+  display: flex
+  ;
 }
 
 .logo {
     margin-left: 2vw;
 }
 
-.userMenu {
-      display: flex;
-      align-items: center;
-      flex-direction: column-reverse;
-  }
+.botonCarrito {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 
-  .mensajeNombre {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: rgb(217, 217, 217);
-  }
+.userMenu {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+}
   
   .profilePic {
     cursor: pointer;
@@ -98,14 +106,6 @@
     border-radius: 9px;
     color: rgb(25, 25, 25);
 }
-
-.carritoLink {
-  width: 1.4vw;
-  height: 5vh;
-  display: flex
-  ;
-}
-
 
 /* ul {
    
