@@ -11,6 +11,7 @@
     flex-direction: column;
     padding: 15px;
     z-index: 1000;
+    color: rgb(21, 21, 21);
   }
   
   .open {
@@ -58,7 +59,7 @@
     flex-grow: 1;
   }
   
-  .eliminarButton {
+  .buttonDelete {
     background: none;
     border: none;
     font-size: 16px;
@@ -73,3 +74,7 @@
     margin-top: 20px;
   }
   
+  .svgDelete {
+    width: 4vw;
+    height: 2.5vh;
+  }
