@@ -6,9 +6,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Cookies from "js-cookie"; // Importamos js-cookie para manejar cookies
 import styles from '@/styles/Header.module.css';
+import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const { user } = useUser();
+  const { user, logout } = useUser();
+  const router = useRouter(); 
   const [carritoUuid, setCarritoUuid] = useState<string | null>(null);
 
   useEffect(() => {
@@ -21,6 +23,11 @@ const Header = () => {
 
     setCarritoUuid(storedUuid);
   }, []);
+
+  const handleLogout = () => {
+    logout(); // Cierra sesión
+    router.push("/home"); // Redirige a la página de inicio
+  };
 
   // Se usa el carritoUuid si el usuario no está logueado
   const carritoLink = user ? `/carrito/${user.id}` : `/carrito/${carritoUuid}`;
@@ -116,7 +123,7 @@ const Header = () => {
                         <Link href="/admin">Panel administrador</Link>
                       )}
                       <Link href="/profile">Mi perfil</Link>
-                      <Link href="/logout">Cerrar sesión</Link>
+                      <button onClick={handleLogout} className={styles.logoutButton}>Cerrar sesión</button>
                     </div>
                   )}
                 </div>

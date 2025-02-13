@@ -7,9 +7,11 @@ import Image from "next/image";
 import Cookies from "js-cookie";
 import styles from '@/styles/ProductsHeader.module.css';
 import CarritoPanel from "./CarritoPanel";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const { user } = useUser();
+  const { user, logout } = useUser();
+  const router = useRouter(); 
   const [carritoUuid, setCarritoUuid] = useState<string | null>(null);
   const [isCarritoOpen, setIsCarritoOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,7 +30,12 @@ const Header = () => {
     setCarritoUuid(storedUuid);
   }, []);
 
-  const carritoLink = user ? `/carrito/${user.id}` : `/carrito/${carritoUuid}`;
+  const handleLogout = () => {
+    logout(); // Cierra sesión
+    router.push("/home"); // Redirige a la página de inicio
+  };
+
+  // const carritoLink = user ? `/carrito/${user.id}` : `/carrito/${carritoUuid}`;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -117,7 +124,7 @@ const Header = () => {
                         <Link href="/admin">Panel administrador</Link>
                       )}
                       <Link href="/profile">Mi perfil</Link>
-                      <Link href="/logout">Cerrar sesión</Link>
+                      <button onClick={handleLogout} className={styles.logoutButton}>Cerrar sesión</button>
                     </div>
                   )}
                 </div>

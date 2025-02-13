@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../context/authContext";
+import { useCarritoContext } from "../context/carritoContext";
 
 interface Producto {
   id: number;
@@ -20,7 +21,7 @@ interface CarritoProducto {
 }
 
 export const useCarrito = () => {
-  const [carrito, setCarrito] = useState<CarritoProducto[]>([]);
+  const { carrito, setCarrito } = useCarritoContext();
   const [carritoId, setCarritoId] = useState<number | null>(null); // Agregamos el estado para el carritoId
   const { user } = useUser();
 
@@ -53,36 +54,43 @@ export const useCarrito = () => {
 
   const agregarAlCarrito = async (producto: Producto) => {
     if (!user) {
-      alert('Debes iniciar sesión para agregar productos al carrito');
+      alert("Debes iniciar sesión para agregar productos al carrito");
       return;
     }
   
     try {
-      // Primero, obtener el carrito del usuario
       const carritoResponse = await axios.get(`http://localhost:3001/api/carrito/${user.id}`);
-      console.log('Respuesta del carrito:', carritoResponse.data); // Ver la respuesta completa
-      
-      const carrito_id = carritoResponse.data.carrito.id; // Acceder correctamente al carrito_id
-      console.log('Carrito ID:', carrito_id); // Ver el valor del carrito_id
-      
+      const carrito_id = carritoResponse.data.carrito.id;
+  
       if (!carrito_id) {
-        alert('No se ha encontrado un carrito para el usuario');
+        alert("No se ha encontrado un carrito para el usuario");
         return;
       }
   
-      // Ahora que tenemos el carrito_id, lo enviamos al backend para agregar el producto
-      const response = await axios.post('http://localhost:3001/api/carritoProductos/add', {
+      await axios.post("http://localhost:3001/api/carritoProductos/add", {
         carrito_id,
         producto_id: producto.id,
         cantidad: 1,
       });
   
-      setCarrito(response.data); // Actualiza el carrito después de agregar el producto
+      // Actualizar el estado global
+      const nuevoProducto: CarritoProducto = {
+        id: producto.id,
+        producto_id: producto.id,
+        cantidad: 1,
+        titulo: producto.titulo,
+        precio: producto.precio.toString(),
+        imagen_url: producto.imagen_url,
+        carrito_id: carrito_id,
+      };
+  
+      setCarrito((prevCarrito) => [...prevCarrito, nuevoProducto]);
     } catch (error) {
-      console.error('Error al agregar producto al carrito', error);
-      alert('Error al agregar producto al carrito');
+      console.error("Error al agregar producto al carrito", error);
+      alert("Error al agregar producto al carrito");
     }
   };
+
 
   const eliminarProducto = async (productoId: number) => {
     try {
@@ -109,12 +117,12 @@ export const useCarrito = () => {
 
   const fetchCarrito = async () => {
     if (!user) return;
-  
+  console.log("Ejecutando fetchCarrito");
     try {
       const { data } = await axios.get(`http://localhost:3001/api/carrito/${user.id}`);
       console.log("Respuesta del backend:", data); // Verifica la respuesta
   
-      if (!data.productos || !Array.isArray(data.productos)) {
+      if (!data.carrito || !data.carrito.productos || !Array.isArray(data.carrito.productos)) {
         console.error("La respuesta del backend no es válida:", data);
         return;
       }

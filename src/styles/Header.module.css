@@ -20,11 +20,25 @@
       flex-direction: column-reverse;
   }
 
+
+  
+  .botonCarrito {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
   .mensajeNombre {
     font-size: 0.9rem;
     font-weight: 400;
     color: rgb(217, 217, 217);
   }
+
+  .userMenu {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+}
   
   .profilePic {
     cursor: pointer;

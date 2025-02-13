@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CarritoProvider } from "@/context/carritoContext";
 import { UserProvider } from "@/context/authContext";
 import axios from "axios";
 
@@ -29,11 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <UserProvider>
+      <CarritoProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
           {children}
         </body>
       </html>
+      </CarritoProvider>
     </UserProvider>
   );
 }
