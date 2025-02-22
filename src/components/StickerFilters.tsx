@@ -1,61 +1,65 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useRouter, useSearchParams } from 'next/navigation'; // Importar router y searchParams
 import { Categoria } from '@/types/Categoria';
-import style from '@/styles/Filter.module.css'
+import style from '@/styles/Filter.module.css';
 
-interface CategoryFilterPanelProps {
-    onFilter: (categoryId: string, searchQuery: string) => void;
-}
-
-const CategoryFilterPanel: React.FC<CategoryFilterPanelProps> = ({ onFilter }) => {
+const CategoryFilterPanel: React.FC = () => {
     const [categories, setCategories] = useState<Categoria[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string>('');
-    const [searchQuery, setSearchQuery] = useState<string>('');
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
-        // Obtener categorías desde el backend
         axios.get<Categoria[]>('http://localhost:3001/api/categorias/all')
             .then(response => setCategories(response.data))
             .catch(error => console.error('Error al obtener categorías:', error));
     }, []);
 
-    const handleFilter = () => {
-        onFilter(selectedCategory, searchQuery);
+    const handleCategoryClick = (categoryId: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (categoryId) {
+            params.set("category", categoryId);
+        } else {
+            params.delete("category");
+        }
+        router.push(`/products?${params.toString()}`);
     };
 
     return (
         <div className={style.filterContenedor}>
             <input
                 className={style.searchInput}
-                type="text" 
-                value={searchQuery} 
-                onChange={e => setSearchQuery(e.target.value)} 
-                placeholder="Buscar productos..." 
+                type="text"
+                placeholder="Buscar productos..."
+                onChange={(e) => {
+                    const params = new URLSearchParams(searchParams.toString());
+                    if (e.target.value) {
+                        params.set("search", e.target.value);
+                    } else {
+                        params.delete("search");
+                    }
+                    router.push(`/products?${params.toString()}`);
+                }}
             />
 
             <p className={style.textCategorias}>Filtrar por Categoría</p>
             <div className={style.categoryContainer}>
                 <div
-                    onClick={() => setSelectedCategory('')}
-                    className={`${style.categoryItem} ${selectedCategory === '' ? style.selected : ''}`}
+                    onClick={() => handleCategoryClick("")}
+                    className={`${style.categoryItem} ${!searchParams.get("category") ? style.selected : ""}`}
                 >
                     Todas
                 </div>
                 {categories.map(category => (
                     <div
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id.toString())}
-                    className={`${style.categoryItem} ${selectedCategory === category.id.toString() ? style.selected : ''}`}
+                        key={category.id}
+                        onClick={() => handleCategoryClick(category.id.toString())}
+                        className={`${style.categoryItem} ${searchParams.get("category") === category.id.toString() ? style.selected : ""}`}
                     >
-                    {category.nombre}
+                        {category.nombre}
                     </div>
                 ))}
-                </div>
-
-
-
-
-            <button onClick={handleFilter} className={style.buttonAplicar}>Aplicar Filtros</button>
+            </div>
         </div>
     );
 };

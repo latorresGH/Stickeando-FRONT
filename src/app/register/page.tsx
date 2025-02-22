@@ -1,63 +1,85 @@
-// components/Register.tsx
-"use client"
-import React, { useState } from "react";
-import useRegister from "@/hook/useRegister";
+"use client";
+import { useState, useEffect } from "react";
+import { useRegister } from "@/hook/useRegister";
+import { useRouter } from "next/navigation";
+import styles from "@/styles/Register.module.css";
+import Link from "next/link";
 
-const Register = () => {
+const RegisterPage = () => {
   const { registerUser, isLoading, error, successMessage } = useRegister();
-  const [nombre, setNombre] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        router.push("/home"); // Redirige tras el registro exitoso
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage, router]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    const usuario = { nombre, email, password };
-    const productosCarrito = JSON.parse(localStorage.getItem('carrito') || '[]');
 
-    registerUser(usuario, productosCarrito);
+    const productosCarrito = JSON.parse(localStorage.getItem("carrito") || "[]");
+    await registerUser(formData, productosCarrito);
   };
 
   return (
-    <div className="register-container">
-      <h1>Registrarse</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre:</label>
-          <input 
-            type="text" 
-            value={nombre} 
-            onChange={(e) => setNombre(e.target.value)} 
-            required 
+    <div className={styles.contenedorRegister}>
+      <div className={styles.registerBoxForm}>
+        <h2 className={styles.tituloRegister}>Registro</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre"
+            value={formData.nombre}
+            onChange={handleChange}
+            required
           />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo electrónico"
+            value={formData.email}
+            onChange={handleChange}
+            required
           />
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
+          <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            value={formData.password}
+            onChange={handleChange}
+            required
           />
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Cargando..." : "Registrar"}
-        </button>
-      </form>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+          <div className={styles.contenedorError}>
+            {error && <p className={styles.error}>{error}</p>}
+          </div>
+          {successMessage && <p className={styles.success}>{successMessage}</p>}
+          <div className={styles.contenedorButton}>
+            <button className={styles.registerButton} type="submit" disabled={isLoading}>
+              {isLoading ? "REGISTRANDO..." : "REGISTRARSE"}
+            </button>
+            <Link href="/login">
+              <button className={styles.registerButton} type="button">INICIAR SESIÓN</button>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default Register;
+export default RegisterPage;

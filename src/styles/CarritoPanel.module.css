@@ -1,15 +1,15 @@
 .carritoPanel {
+  margin-top: 9vh;
     position: fixed;
-    top: 0;
-    right: -400px; /* Oculto por defecto */
-    width: 350px;
-    height: 100vh;
+    top: 0vh;
+    right: -420px; /* Oculto por defecto */
+    width: 420px;
+    height: 90vh;
     background: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-    padding: 15px;
     z-index: 1000;
     color: rgb(21, 21, 21);
   }
@@ -23,7 +23,9 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    padding: 15px;
+    box-shadow: inset 0 5px 5px -6px rgba(0, 0, 0, 0.3);
+
   }
   
   .closeButton {
@@ -38,6 +40,7 @@
     padding: 0;
     overflow-y: auto;
     flex-grow: 1;
+    padding: 15px;
   }
   
   .carritoItem {
@@ -78,3 +81,40 @@
     width: 4vw;
     height: 2.5vh;
   }
+
+.carritoFooter {
+  background-color: rgb(255, 255, 255);
+  border-top: 1px solid #ddd;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botonComprar {
+  border: 1px solid rgb(17, 17, 17);
+  border-radius: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(26, 26, 26);
+  width: 10vw;
+  height: 5vh;
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.botonComprar:hover {
+  background-color: rgb(52, 52, 52);
+}
+
+.logoSVG {
+  width: 2.5vw;
+  height: 3.5vh;
+}
+
+.tituloCarrito {
+  width: 100%;
+  text-align: center;
+}

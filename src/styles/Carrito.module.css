@@ -1,0 +1,94 @@
+.floatingButton {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #25D366;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .floatingButton:hover {
+    background-color: #1da851;
+  }
+  
+  .floatingButton svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .contenedorProducto {
+
+    height: 15vh;
+    width: 26vw;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+  }
+
+  .imagenProducto {
+    width: 100px;
+    height: 150px;
+    height: auto;
+    border: none !important;
+    clip-path: inset(1.4px);
+    margin: 1vh;
+  }
+
+  .contenedorProductos {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .producto {
+    display: flex;
+    align-items: center;
+  }
+
+  .detalleProducto {
+    display: flex;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    flex-direction: column;
+
+  }
+
+  .cajaContenedora {
+    display: flex;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .titulo {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .precioCantidad {
+    font-size: 0.9rem;
+  }
+
+  .buttonEliminar {
+    background: none;
+    border: none;
+    padding-right: 2vw;
+  }
+
+  .tituloCarrito {
+    display: flex;
+    justify-content: center;
+    padding: 1vh;
+  }
