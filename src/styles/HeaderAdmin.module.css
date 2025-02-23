@@ -102,12 +102,12 @@
     transition: all 0.5s ease;
   }
   
-  li:hover a {
+  .listItem:hover a {
     color: #e41f1f;
     font-weight: bold;
   }
 
-  li:hover .svgs {
+  .listItem:hover .svgs {
     transform: scale(1.1); /* Agranda el SVG al 120% */
     transition: transform 0.3s ease; /* Transición suave */
   }

@@ -139,7 +139,118 @@
   ;
 }
 
+/* Celular */
+@media (min-width: 0px) and (max-width: 479px) {
+  .carritoLink {
+    width: 25px;
+    height: 25px;
+    display: flex;
+  }
 
-/* ul {
-   
-} */
+  .menuLinks {
+    font-size: 0.9rem;
+    gap: 3vw;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .mensajeNombre {
+    display: none;
+  }
+
+  .profilePic {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+}
+
+/* Tablet */
+@media (min-width: 480px) and (max-width: 767px) {
+  .carritoLink {
+    width: 25px;
+    height: 25px;
+    display: flex;
+  }
+
+  .menuLinks {
+    font-size: 0.9rem;
+    gap: 3vw;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .mensajeNombre {
+    display: none;
+  }
+
+  .profilePic {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+}
+
+/* Media entre tablet y pantalla*/
+@media (min-width: 768px) and (max-width: 1023px) {
+  .carritoLink {
+    width: 25px;
+    height: 25px;
+    display: flex;
+  }
+
+  .menuLinks {
+    font-size: 0.9rem;
+    gap: 3vw;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .mensajeNombre {
+    display: none;
+  }
+
+  .profilePic {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+}
+
+/* Pantallas de escritorio medianas o netbooks*/
+@media (min-width: 768px) and (max-width: 1279px) {
+  .carritoLink {
+    width: 25px;
+    height: 25px;
+    display: flex;
+  }
+
+  .menuLinks {
+    font-size: 0.9rem;
+    gap: 3vw;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .mensajeNombre {
+    display: none;
+  }
+
+  .profilePic {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+}

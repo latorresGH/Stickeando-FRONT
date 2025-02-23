@@ -1,111 +1,112 @@
 .header {
-    position: absolute; /* <-------- cambiar a fixed si queremos que la navbar este pegada cuando bajamos
+  position: absolute; /* <-------- cambiar a fixed si queremos que la navbar este pegada cuando bajamos
     top: 0; /* Pegado al borde superior */
-    left: 0; /* Pegado al borde izquierdo */
-    width: 100%; /* Ocupa el ancho completo */
-    background-color: transparent; /* Sin fondo */
-    padding: 1vh;
-    z-index: 10; /* Asegura que quede encima de otros elementos */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.553), rgba(0, 0, 0, 0)); /* Degradado de oscuro a transparente */
-    color: rgb(219, 219, 219);
+  left: 0; /* Pegado al borde izquierdo */
+  width: 100%; /* Ocupa el ancho completo */
+  background-color: transparent; /* Sin fondo */
+  padding: 1vh;
+  z-index: 10; /* Asegura que quede encima de otros elementos */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.553),
+    rgba(0, 0, 0, 0)
+  ); /* Degradado de oscuro a transparente */
+  color: rgb(219, 219, 219);
 }
 
 .logo {
-    margin-left: 2vw;
+  margin-left: 2vw;
 }
 
 .userMenu {
-      display: flex;
-      align-items: center;
-      flex-direction: column-reverse;
-  }
-
-
-  
-  .botonCarrito {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-
-  .mensajeNombre {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: rgb(217, 217, 217);
-  }
-
-  .userMenu {
   display: flex;
   align-items: center;
   flex-direction: column-reverse;
 }
-  
-  .profilePic {
-    cursor: pointer;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-left: 10px; /* Espacio entre el nombre y la foto de perfil */
-  }
-  
-  .dropdownMenu {
-    position: absolute;
-    top: 7.2vh;
-    right: 2vw;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    min-width: 150px;
-    padding: 10px;
-    z-index: 1;    
-  }
-  
-  .dropdownMenu a {
-    display: block;
-    padding: 8px;
-    text-decoration: none;
-    color: #333;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-  
-  .dropdownMenu a:hover {
-    background-color: #f0f0f0;
-  }
 
-  .dropdownMenu button {
-    font-size: 1rem;
-    text-align: left;
-    width: 100%;
-    background: none;
-    display: block;
-    padding: 8px;
-    text-decoration: none;
-    color: #333;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-  }
-  .dropdownMenu button:hover {
-    background-color: #f0f0f0;
-  }
-  
+.botonCarrito {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.mensajeNombre {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgb(217, 217, 217);
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.profilePic {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px; /* Espacio entre el nombre y la foto de perfil */
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 7.2vh;
+  right: 2vw;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  min-width: 150px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.dropdownMenu a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.dropdownMenu a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdownMenu button {
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  background: none;
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+.dropdownMenu button:hover {
+  background-color: #f0f0f0;
+}
 
 .menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
 }
 
 .menuLinks {
-    display: flex;
-    gap: 1.5vw;
-    margin-right: 1.5vw;
-    font-weight: 500;
-    align-items: center;
-    list-style: none;
+  display: flex;
+  gap: 1.5vw;
+  margin-right: 1.5vw;
+  font-weight: 500;
+  align-items: center;
+  list-style: none;
 }
 
 .active {
@@ -117,28 +118,138 @@
 }
 
 .login {
-    background-color: #1b1b1b;
-    padding: 1vh 1vh;
-    border-radius: 9px;
-    margin-left: 0.5vw;
-    color: rgb(219, 219, 219);
+  background-color: #1b1b1b;
+  padding: 1vh 1vh;
+  border-radius: 9px;
+  margin-left: 0.5vw;
+  color: rgb(219, 219, 219);
 }
 
 .register {
-    background-color: #e0e0e0;
-    padding: 1vh 1vh;
-    border-radius: 9px;
-    color: rgb(25, 25, 25);
+  background-color: #e0e0e0;
+  padding: 1vh 1vh;
+  border-radius: 9px;
+  color: rgb(25, 25, 25);
 }
 
 .carritoLink {
-  width: 1.4vw;
-  height: 5vh;
-  display: flex
-  ;
+  width: 25px;
+  height: 25px;
+  display: flex;
 }
 
+/* Celular */
+@media (min-width: 0px) and (max-width: 479px) {
+  .carritoLink {
+    width: 25px;
+    height: 25px;
+    display: flex;
+  }
 
-/* ul {
-   
-} */
+  .menuLinks {
+    font-size: 0.9rem;
+    gap: 3vw;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .mensajeNombre {
+    display: none;
+  }
+
+  .profilePic {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+}
+
+/* Tablet */
+@media (min-width: 480px) and (max-width: 767px) {
+  .carritoLink {
+    width: 25px;
+    height: 25px;
+    display: flex;
+  }
+
+  .menuLinks {
+    font-size: 0.9rem;
+    gap: 3vw;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .mensajeNombre {
+    display: none;
+  }
+
+  .profilePic {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+}
+
+/* Media entre tablet y pantalla*/
+@media (min-width: 768px) and (max-width: 1023px) {
+  .carritoLink {
+    width: 25px;
+    height: 25px;
+    display: flex;
+  }
+
+  .menuLinks {
+    font-size: 0.9rem;
+    gap: 3vw;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .mensajeNombre {
+    display: none;
+  }
+
+  .profilePic {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+}
+
+/* Pantallas de escritorio medianas o netbooks*/
+@media (min-width: 768px) and (max-width: 1279px) {
+  .carritoLink {
+    width: 25px;
+    height: 25px;
+    display: flex;
+  }
+
+  .menuLinks {
+    font-size: 0.9rem;
+    gap: 3vw;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .mensajeNombre {
+    display: none;
+  }
+
+  .profilePic {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+}

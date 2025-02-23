@@ -64,3 +64,53 @@
   .arrowIcon:hover {
     transform: scale(1.2); /* Agranda la flecha al pasar el mouse */
   }
+
+
+  /* Celular */
+  @media  (min-width: 0px) and (max-width: 479px) {
+    .tittle {
+      font-size: 2.4rem;
+    }
+
+    .subtittle {
+      font-size: 0.7rem;
+      transform: translate(-50%, -80%);
+    }
+  }
+
+  /* Media entre celular y tablet */
+  @media (min-width: 480px) and (max-width: 767px) {
+    .tittle {
+      font-size: 4rem;
+    }
+
+    .subtittle {
+      font-size: 0.8rem;
+      transform: translate(-50%, -70%);
+    }
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    
+    .tittle {
+      font-size: 4.5rem;
+    }
+
+    .subtittle {
+      font-size: 0.9rem;
+      transform: translate(-50%, -70%);
+    }
+  }
+
+  /* Pantallas de escritorio medianas o netbooks*/
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .tittle {
+      font-size: 4.5rem;
+    }
+
+    .subtittle {
+      font-size: 0.9rem;
+      transform: translate(-50%, -70%);
+    }
+  }

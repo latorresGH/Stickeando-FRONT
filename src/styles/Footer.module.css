@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.footer {
+    background-color: #1f1f1f;
+    color: white;
+    text-align: center;
+    font-family: "Roboto", serif;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    padding: 2vh;
+    gap: 8vw;
+    height: 30vh;
+    align-items: center;
+  }
+  
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1vh;
+    color: #bbbbbb;
+  }
+
+  .info span {
+    color: white;
+  }
+
+  .copyright {
+    background-color: #1a1a1a;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbbbbb;
+    gap: 5vw;
+    font-size: 0.8rem;
+  }
+  
+  .textA {
+    color: #f1f1f1;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem;
+  }
+  
+  .textA:hover {
+    text-decoration: underline;
+    color: rgb(255, 167, 133);
+  }
+  
+  .urderList {
+    margin-top: 1vh;
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+
+  
+  .social a {
+    display: block;
+  }
+  
+  .payment p {
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 10px;
+    }
+  
+    .info, .contact, .links, .social, .payment, .copyright {
+      margin-bottom: 10px;
+    }
+  }
+
+  .socialIcons {
+    display: flex;
+    gap: 0.5vw;
+    margin-top: 1vh;
+  }
+  
+  .svgIcons {
+    width: 40px;
+    height: 40px;
+    padding: 0.5vh;
+    border: 2px solid rgb(68, 68, 68);
+    transition: all ease 0.3s;
+  }
+
+  .svgIcons:hover {
+    border: 2px solid rgb(185, 185, 185);
+    border-radius: 13px;
+  }
+
+  .nombre {
+    color: rgb(216, 216, 216);
+  }
+
+  .nombre:hover {
+   color: white;
+  }
+
+
+  /* Responsive */
+
+  /* Celular */
+  @media  (min-width: 0px) and (max-width: 479px) {
+
+    .container p {
+      font-size: 0.5rem;
+      text-align: left;
+    }
+
+    .container span {
+      font-size: 0.5rem;
+    }
+
+    .copyright {
+      font-size: 0.45rem;
+    }
+
+    .textA {
+      font-size: 0.5rem;
+    }
+
+    .payment p {
+      font-size: 0.5rem;
+    }
+
+  }
+
+  /* Tablet */
+  @media (min-width: 480px) and (max-width: 767px) {
+
+    
+    .container p {
+      font-size: 0.8rem;
+      text-align: left;
+    }
+
+    .container span {
+      font-size: 0.8rem;
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+    }
+
+    .textA {
+      font-size: 0.8rem;
+    }
+
+    .payment p {
+      font-size: 0.8rem;
+    }
+  }

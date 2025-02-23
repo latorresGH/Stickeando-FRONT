@@ -4,7 +4,7 @@
     top: 0vh;
     right: -420px; /* Oculto por defecto */
     width: 420px;
-    height: 90vh;
+    height: 91%;
     background: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
@@ -25,7 +25,6 @@
     border-bottom: 1px solid #ddd;
     padding: 15px;
     box-shadow: inset 0 5px 5px -6px rgba(0, 0, 0, 0.3);
-
   }
   
   .closeButton {
@@ -110,11 +109,106 @@
 }
 
 .logoSVG {
-  width: 2.5vw;
-  height: 3.5vh;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
 }
 
 .tituloCarrito {
   width: 100%;
   text-align: center;
+}
+
+/* Celular */
+@media  (min-width: 0px) and (max-width: 479px) {
+
+  .carritoPanel {
+      width: 100%;
+      height: 91%;
+    }
+
+    .open {
+      right: 0;
+    }
+
+    .botonComprar {
+      width: 150px;
+    }
+
+    .logoSVG {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 480px) and (max-width: 767px) {
+
+  .carritoPanel {
+    width: 50%;
+    height: 91%;
+  }
+
+  .open {
+    right: 0;
+  }
+
+  .botonComprar {
+    width: 150px;
+  }
+
+  .logoSVG {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+}
+
+/* Media entre tablet y pantalla*/
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .carritoPanel {
+    width: 50%;
+    height: 91%;
+  }
+
+  .open {
+    right: 0;
+  }
+
+  .botonComprar {
+    width: 150px;
+  }
+
+  .logoSVG {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+
+}
+
+/* Pantallas de escritorio medianas o netbooks*/
+@media (min-width: 768px) and (max-width: 1279px) {
+
+  .carritoPanel {
+    width: 40%;
+    height: 91%;
+  }
+
+  .open {
+    right: 0;
+  }
+
+  .botonComprar {
+    width: 150px;
+  }
+
+  .logoSVG {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+
 }

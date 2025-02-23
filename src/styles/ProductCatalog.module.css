@@ -53,6 +53,7 @@
     font-size: 1rem;
     color: #4a5568; /* Color gris */
     text-align: center;
+    margin-bottom: 1vh;
   }
 
   .productDetails {
@@ -62,9 +63,16 @@
   .productImage {
     width: 250px;
     height: 250px;
+    max-width: 250px;
+    max-height: 250px;
     height: auto;
     border: none !important;
     clip-path: inset(1.4px); /* borra los bordes */
+  }
+
+  .productActions {
+    display: flex;
+    justify-content: center;
   }
   
   .addToCartButton {
@@ -79,14 +87,22 @@
     transition: background-color 0.3s ease;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
+    font-size: 0.8rem;
+  }
+
+  .svgCart{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 0.2vw;
   }
   
   .addToCartButton:hover {
     background-color: #e93111; /* Azul más oscuro al hacer hover */
   }
   
+  
+
   .productInfo {
     display: flex;
     justify-content: space-between;
@@ -101,4 +117,169 @@
   .precio {
     color: rgb(0, 180, 0);
     font-weight: bold;
+  }
+
+
+  /* // Responsive */
+/* 
+  @media (min-width: 1980px) {
+    .productImage {
+      max-width: 350px;
+    }
+  }
+  
+  @media (min-width: 1280px) and (max-width: 1979px) {
+    .productImage {
+      max-width: 300px;
+    }
+  }   */
+  /* Pantallas de escritorio medianas */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .productList {
+      margin-top: 2vh;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .titulo {
+      font-size: 1.5rem;
+    }
+
+    .productImage {
+      width: 100px;
+      height: 100px;
+    }
+
+    .productCard {
+      width: 200px;
+      height: 250px;
+    }
+
+  .productTitle {
+    font-size: 0.8rem;
+  }
+
+  .addToCartButton {
+    width: 50vw;
+    font-size: 0.8rem;
+  }
+
+  .productPrice {
+    margin-bottom: 1vh;
+  }
+
+  .svgCart {
+    width: 1.2rem;
+  }
+  
+  }
+  
+  /* Tablets */
+  @media (min-width: 480px) and (max-width: 767px) {
+
+    .productList {
+      margin-top: 2vh;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .titulo {
+      font-size: 1.5rem;
+    }
+
+    .productImage {
+      width: 100px;
+      height: 100px;
+    }
+
+    .productCard {
+      width: 200px;
+      height: 250px;
+    }
+
+    .productCatalogs {
+      display: flex;
+      flex-direction: column;
+      padding-top: 10vh;
+      justify-content: center;
+      align-items: center;
+      padding-top: 12vh;
+
+  }
+
+  .productTitle {
+    font-size: 0.8rem;
+  }
+
+  .addToCartButton {
+    width: 50vw;
+    font-size: 0.8rem;
+  }
+
+  .productPrice {
+    margin-bottom: 1vh;
+  }
+
+  .svgCart {
+    width: 1.2rem;
+  }
+  }
+  
+  /* Teléfonos */
+  @media (max-width: 479px) {
+
+    .productList {
+      margin-top: 2vh;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 3 columnas */
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .titulo {
+      font-size: 1.5rem;
+    }
+
+    .productImage {
+      width: 100px;
+      height: 100px;
+    }
+
+    .productCard {
+      width: 150px;
+      height: 250px;
+    }
+
+    .productCatalogs {
+      display: flex;
+      flex-direction: column;
+      padding-top: 10vh;
+      justify-content: center;
+      align-items: center;
+      padding-top: 15vh;
+  }
+
+  .productTitle {
+    font-size: 0.8rem;
+  }
+
+  .addToCartButton {
+    width: 50vw;
+    font-size: 0.7rem;
+  }
+
+  .productPrice {
+    margin-bottom: 1vh;
+  }
+
+  .svgCart {
+    width: 1rem;
+  }
   }

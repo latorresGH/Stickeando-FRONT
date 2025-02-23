@@ -1,6 +1,7 @@
 import Carrito from "@/components/Carrito";
 import Header from "@/components/HeaderTercero";
 import styles from "@/styles/CarritoPage.module.css";
+import Footer from "@/components/Footer";
 
 export default function CarritoPage() {
   return (

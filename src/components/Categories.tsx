@@ -11,6 +11,7 @@ const Categories = () => {
         <span>Estos son solo algunos tipos de stickers, no todos</span>
       </div>
 
+    <div className={style.imagenesContenedor}>
       <div className={style.categories}>
         <div className={style.categoriaSeccion}>
           <Link href="/products?category=1">
@@ -72,6 +73,7 @@ const Categories = () => {
           <p>Signos</p>
         </div>
       </div>
+    </div>
 
       <div className={style.buttonSection}>
         <button className={style.button}>

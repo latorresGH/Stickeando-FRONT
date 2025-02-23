@@ -19,37 +19,40 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
 
-    if (storedToken) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+    if (!storedToken) {
+      console.log("No hay token, usuario no autenticado.");
+      return; // Evita hacer la petición si no hay token
     }
 
-    if (storedToken) {
-      console.log("Token encontrado:", storedToken); // Depuración
-      axios
-        .get("http://localhost:3001/api/auth/me", {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          console.log("Respuesta del backend:", response.data); // Depuración
-          setUser(response.data);
-        })
-        .catch((error) => {
-          console.error("Error al cargar usuario:", error);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+
+    console.log("Token encontrado:", storedToken); // Depuración
+    axios
+      .get("http://localhost:3001/api/auth/me")
+      .then((response) => {
+        console.log("Usuario autenticado:", response.data);
+        setUser(response.data);
+      })
+      .catch((error) => {
+        if (error.response?.status === 401) {
+          console.log("Token inválido o expirado, cerrando sesión automáticamente.");
           localStorage.removeItem("token");
-        });
-    }
+          setUser(null);
+          delete axios.defaults.headers.common["Authorization"];
+        } else {
+          console.error("Error al obtener el usuario:", error);
+        }
+      });
   }, []);
-  
 
   const login = async (email: string, password: string) => {
     try {
       const response = await axios.post("http://localhost:3001/api/users/login", { email, password });
       const { token, user } = response.data;
 
-      localStorage.setItem("token", token); // Guardar el token
-      setUser(user); // Guardar datos del usuario en el contexto
-
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`; // Configurar el token globalmente en Axios
+      localStorage.setItem("token", token);
+      setUser(user);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       throw error;
@@ -57,9 +60,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token"); // Eliminar el token
-    setUser(null); // Limpiar el usuario
-    delete axios.defaults.headers.common["Authorization"]; // Eliminar token de Axios
+    localStorage.removeItem("token");
+    setUser(null);
+    delete axios.defaults.headers.common["Authorization"];
   };
 
   return (
