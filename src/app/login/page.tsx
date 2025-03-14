@@ -2,6 +2,7 @@
 import style from "@/styles/Login.module.css";
 import { useLogin } from "@/hook/useLogin";
 import Image from "next/image";
+import Link from "next/link";
 
 const LoginPage = () => {
   const { email, setEmail, password, setPassword, error, handleLogin } =
@@ -55,9 +56,11 @@ const LoginPage = () => {
               INICIAR SESIÓN
             </button>
 
+          <Link href={"/register"}>
             <button type="submit" className={style.registerButton}>
               REGISTRARME
             </button>
+          </Link>
           </div>
         </form>
         </div>

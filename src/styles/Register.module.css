@@ -37,6 +37,8 @@
     display: flex;
     flex-direction: column;
     margin: 3vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .form input {
@@ -87,7 +89,199 @@
     color: white;
 }
 
+
+.logo {
+    border: 1px solid;
+    border-radius: 50%;
+  }
+
 .contenedorButton {
     gap: 0.5vw;
     display: flex;
 }
+
+.loginButton {
+    font-weight: bold;
+    height: 4vh;
+    width: 7.6vw;
+    font-family: "Inter", serif;
+    transition: all 0.5s ease;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .loginButton:hover {
+    border: 1px solid white;
+    background-color: #ff6868;
+    color: white;
+  }
+
+
+  /* Celular */
+  @media  (min-width: 0px) and (max-width: 479px) {
+
+    .contenedorRegister {
+      background-size: 410%;
+      background-position: center;
+    }
+
+    .registerBoxForm {
+      width: 84vw;
+      height: 60vh;
+    }
+
+    .form input {
+      width: 70vw;
+    }
+
+    .loginButton {
+      width: 34vw;
+    }
+
+    .registerButton {
+      width: 34vw;
+    }
+
+    .contenedorButton {
+      gap: 1.4vw;
+    }
+
+    .inputIcons {
+      position: absolute;
+      right: 20%;
+    }
+
+    .error {
+      position: absolute;
+      bottom: 25%;
+      left: 25vw;
+      max-width: 50%;
+      font-weight: 600;
+      color: red;
+      font-size: 0.8rem;
+      }
+  }
+
+  /* Tablet */
+  @media (min-width: 480px) and (max-width: 767px) {
+    .contenedorRegister {
+      background-size: 240%;
+      background-position: left;
+    }
+
+    .registerBoxForm {
+      width: 54vw;
+      height: 60vh;
+    }
+
+    .form input {
+      width: 50vw;
+    }
+
+    .loginButton {
+      width: 24vw;
+    }
+
+    .registerButton {
+      width: 24vw;
+    }
+
+    .contenedorButton {
+      gap: 1.4vw;
+    }
+
+    .inputIcons {
+      position: absolute;
+      right: 28%;
+    }
+
+    .error {
+      position: absolute;
+      bottom: 25%;
+      left: 25vw;
+      max-width: 50%;
+      font-weight: 600;
+      color: red;
+      font-size: 0.8rem;
+      }
+  }
+
+  /* Media entre tablet y pantalla*/
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .contenedorRegister {
+      background-size: 170%;
+      background-position: left;
+    }
+
+    .registerBoxForm {
+      width: 54vw;
+      height: 60vh;
+    }
+
+    .form input {
+      width: 50vw;
+    }
+
+    .loginButton {
+      width: 24vw;
+    }
+
+    .registerButton {
+      width: 24vw;
+    }
+
+    .contenedorButton {
+      gap: 1.4vw;
+    }
+
+    .inputIcons {
+      position: absolute;
+      right: 28%;
+    }
+
+    .error {
+      position: absolute;
+      bottom: 25%;
+      left: 35vw;
+      max-width: 250px;
+      font-weight: 600;
+      color: red;
+      font-size: 0.9rem;
+      }
+  }
+
+  /* Pantallas de escritorio medianas o netbooks*/
+  @media (min-width: 768px) and (max-width: 1279px) {
+
+
+    .registerBoxForm {
+      width: 35vw;
+      height: 60vh;
+    }
+
+    .form input {
+      width: 30vw;
+    }
+
+    .loginButton {
+      width: 14vw;
+    }
+
+    .registerButton {
+      width: 14vw;
+    }
+
+    .contenedorButton {
+      gap: 1.4vw;
+      padding: 1vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inputIcons {
+      position: absolute;
+      right: 37%;
+    }
+  }

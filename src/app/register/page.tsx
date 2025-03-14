@@ -38,8 +38,16 @@ const RegisterPage = () => {
   return (
     <div className={styles.contenedorRegister}>
       <div className={styles.registerBoxForm}>
-        <h2 className={styles.tituloRegister}>Registro</h2>
+
         <form className={styles.form} onSubmit={handleSubmit}>
+        <img
+          className={styles.logo}
+          src="/images/logo-stickeando.png"
+          alt="Logo"
+          width={80}
+          height={80}
+        />
+                <h2 className={styles.tituloRegister}>REGISTRO</h2>
           <input
             type="text"
             name="nombre"
@@ -69,7 +77,7 @@ const RegisterPage = () => {
           </div>
           {successMessage && <p className={styles.success}>{successMessage}</p>}
           <div className={styles.contenedorButton}>
-            <button className={styles.registerButton} type="submit" disabled={isLoading}>
+            <button className={styles.loginButton} type="submit" disabled={isLoading}>
               {isLoading ? "REGISTRANDO..." : "REGISTRARSE"}
             </button>
             <Link href="/login">
