@@ -27,7 +27,6 @@
   }
   
   .contenedorProducto {
-
     height: 15vh;
     width: 26vw;
     display: flex;
@@ -62,7 +61,6 @@
     padding-bottom: 1vh;
     padding-left: 1.5vw;
     flex-direction: column;
-
   }
 
   .cajaContenedora {
@@ -92,3 +90,71 @@
     justify-content: center;
     padding: 1vh;
   }
+
+  /* Celular */
+  @media  (min-width: 0px) and (max-width: 479px) {
+
+    .contenedorProducto {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 8vh;
+      height: 27vh;
+      width: 45vw;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .titulo {
+      font-size: 1rem;
+    }
+
+    .buttonEliminar {
+      padding-right: 5vw;
+      margin-left: 5vw;
+      position: absolute;
+      height: 47%;
+      width: 45%;
+    }
+
+    .buttonEliminar::before {
+      content: "Eliminar ";
+    }
+    
+  }
+
+  /* Tablet */
+  @media (min-width: 480px) and (max-width: 767px) {
+
+    .contenedorProducto {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 8vh;
+      height: 27vh;
+      width: 40vw;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .titulo {
+      font-size: 1rem;
+    }
+
+    .buttonEliminar {
+      padding-right: 5vw;
+      margin-left: 5vw;
+      position: absolute;
+      height: 47%;
+      width: 37%;
+    }
+
+    .buttonEliminar::before {
+      content: "Eliminar ";
+    }
+
+  }
+
+  /* Media entre tablet y pantalla*/
+  @media (min-width: 768px) and (max-width: 1023px) {}
+
+  /* Pantallas de escritorio medianas o netbooks*/
+  @media (min-width: 768px) and (max-width: 1279px) {}

@@ -101,6 +101,11 @@
     text-decoration: none;
     transition: all 0.5s ease;
   }
+
+  .links {
+    display: flex;
+    align-items: center;
+  }
   
   .listItem:hover a {
     color: #e41f1f;
@@ -121,4 +126,93 @@
   .navLinks li {
     display: flex;
     align-items: center;
+  }
+
+  /* Celular */
+  @media  (min-width: 0px) and (max-width: 479px) {
+
+    .header {
+      width: 100vw;
+      height: 10vh;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: 2px solid #dfdfdf;
+    }
+ 
+    .svgs {
+      width: 15vw;
+      height: 4vh;
+      border-left: 1px solid rgb(199, 199, 199);
+      padding-left: 2vw;
+    }
+
+    .links p {
+      display: none;
+    }
+
+    .menu {
+      display: flex;
+    }
+
+    .userInfo {
+      margin: 0;
+      display: flex;
+    }
+
+    .navLinks {
+      display: flex;
+      margin-left: 12%;
+      gap: 5px;
+    }
+
+    .profilePic {
+      margin-bottom: 0;
+    }
+
+    .userName {
+      margin-bottom: 0;
+    }
+
+  }
+
+  /* Tablet */
+  @media (min-width: 480px) and (max-width: 767px) {
+
+    .header {
+      width: 17vw;
+    }
+
+    .links p {
+      font-size: 0.7rem;
+      margin-left: 1vw;
+    }
+
+    .userDetails {
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+
+  /* Media entre tablet y pantalla*/
+  @media (min-width: 768px) and (max-width: 1023px) {
+
+    .links p {
+      font-size: 0.7rem;
+      margin-left: 1vw;
+    }
+
+    .userDetails {
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+
+  /* Pantallas de escritorio medianas o netbooks*/
+  @media (min-width: 768px) and (max-width: 1279px) {
+
+
   }

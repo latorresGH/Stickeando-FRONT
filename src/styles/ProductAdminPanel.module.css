@@ -55,12 +55,14 @@
   border-radius: 15px;
   padding: 2vh;
   width: 35vw;
-  height: 46vh;
+  min-height: 46vh; /* En lugar de height, usamos min-height */
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   transition: all 0.5s ease;
+  flex-direction: column;
 }
+
 
 .contenedor:hover {
   box-shadow: 4px 4px 15px rgba(10, 122, 0, 0.2);
@@ -162,3 +164,21 @@
 .titulo {
   text-align: center;
 }
+
+/* Celular */
+@media  (min-width: 0px) and (max-width: 479px) {
+
+    .contenedor {
+        width: 80vw;
+    }
+
+}
+
+/* Tablet */
+@media (min-width: 480px) and (max-width: 767px) {}
+
+/* Media entre tablet y pantalla*/
+@media (min-width: 768px) and (max-width: 1023px) {}
+
+/* Pantallas de escritorio medianas o netbooks*/
+@media (min-width: 768px) and (max-width: 1279px) {}

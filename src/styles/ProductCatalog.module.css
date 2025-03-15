@@ -68,6 +68,8 @@
     height: auto;
     border: none !important;
     clip-path: inset(1.4px); /* borra los bordes */
+    min-width: 250px;
+    min-height: 250px;
   }
 
   .productActions {

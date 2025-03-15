@@ -61,10 +61,12 @@
   
   .error {
     position: absolute;
-    bottom: 30%;
-    left: 40.5%;
+    bottom: 25%;
+    left: 40.5vw;
+    max-width: 250px;
     font-weight: 600;
     color: red;
+    font-size: 0.9rem;
     }
 
   .loginButton {
@@ -274,4 +276,14 @@
       position: absolute;
       right: 37%;
     }
+
+    .error {
+      position: absolute;
+      bottom: 25%;
+      left: 35vw;
+      max-width: 250px;
+      font-weight: 600;
+      color: red;
+      font-size: 0.9rem;
+      }
   }

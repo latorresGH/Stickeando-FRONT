@@ -16,6 +16,7 @@ const ActualizarPerfil: React.FC = () => {
   const [foto, setFoto] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  
 
   const validarNombre = (nombre: string) =>
     /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(nombre);
@@ -44,7 +45,7 @@ const ActualizarPerfil: React.FC = () => {
 
     try {
       const response = await axios.put(
-        "http://localhost:3001/api/users/update",
+        "https://stickeando.onrender.com/api/users/update",
         {
           id: user?.id,
           nombre,
@@ -68,7 +69,7 @@ const ActualizarPerfil: React.FC = () => {
       <div className={styles.perfilActual}>
         {user?.id && (
           <img
-            src={`http://localhost:3001/api/users/photo/${user.id}`}
+            src={`https://stickeando.onrender.com/api/users/photo/${user.id}`}
             alt="Foto actual"
             className={styles.fotoActual}
           />

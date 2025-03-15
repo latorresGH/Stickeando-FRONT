@@ -19,7 +19,7 @@ const ProductCatalog = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/productos/listar");
+        const response = await fetch("https://stickeando.onrender.com/api/productos/listar");
         if (!response.ok) throw new Error("No se pudieron obtener los productos");
   
         const data = await response.json();
@@ -59,7 +59,7 @@ const ProductCatalog = () => {
               <h2 className={style.productTitle}>{product.titulo}</h2>
               <div className={style.productImageContainer}>
                 <img
-                  src={`http://localhost:3001/api/imagenProducto/${product.imagen_url}`}
+                  src={`https://stickeando.onrender.com/api/imagenProducto/${product.imagen_url}`}
                   alt={product.titulo}
                   className={style.productImage}
                 />

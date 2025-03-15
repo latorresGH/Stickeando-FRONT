@@ -53,7 +53,7 @@ const generarMensajeWhatsApp = () => {
           {carrito.map((producto) => (
             <li key={producto.id} className={styles.carritoItem}>
               <img
-                src={`http://localhost:3001/api/imagenProducto/${producto.imagen_url}`}
+                src={`https://stickeando.onrender.com/api/imagenProducto/${producto.imagen_url}`}
                 alt={producto.titulo}
                 className={styles.carritoImagen}
               />

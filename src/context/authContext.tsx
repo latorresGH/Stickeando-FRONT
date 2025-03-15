@@ -28,7 +28,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     console.log("Token encontrado:", storedToken); // Depuración
     axios
-      .get("http://localhost:3001/api/auth/me")
+      .get("https://stickeando.onrender.com/api/auth/me")
       .then((response) => {
         console.log("Usuario autenticado:", response.data);
         setUser(response.data);
@@ -36,6 +36,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       .catch((error) => {
         if (error.response?.status === 401) {
           console.log("Token inválido o expirado, cerrando sesión automáticamente.");
+
+
+          
           localStorage.removeItem("token");
           setUser(null);
           delete axios.defaults.headers.common["Authorization"];
@@ -47,7 +50,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post("http://localhost:3001/api/users/login", { email, password });
+      const response = await axios.post("https://stickeando.onrender.com/api/users/login", { email, password });
       const { token, user } = response.data;
 
       localStorage.setItem("token", token);

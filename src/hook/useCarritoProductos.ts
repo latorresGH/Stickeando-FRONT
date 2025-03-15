@@ -15,7 +15,7 @@ export const useCarritoProducto = (carritoId: string) => {
     setLoading(true);
     try {
       const response = await axios.get<CarritoProducto[]>(
-        `http://localhost:3001/api/CarritoProductos/${carritoId}`
+        `https://stickeando.onrender.com/api/CarritoProductos/${carritoId}`
       );
       setProductos(response.data);
     } catch (error) {
@@ -29,7 +29,7 @@ export const useCarritoProducto = (carritoId: string) => {
     setLoading(true);
     try {
       const response = await axios.post<CarritoProducto>(
-        "http://localhost:3001/api/CarritoProductos/add",
+        "https://stickeando.onrender.com/api/CarritoProductos/add",
         { carrito_id: carritoId, producto_id: productoId, cantidad }
       );
       setProductos([...productos, response.data]);
@@ -43,7 +43,7 @@ export const useCarritoProducto = (carritoId: string) => {
   const removeProducto = async (id: string) => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:3001/api/CarritoProductos/remove/${id}`);
+      await axios.delete(`https://stickeando.onrender.com/api/CarritoProductos/remove/${id}`);
       setProductos(productos.filter((producto) => producto.id !== Number(id)));
     } catch (error) {
       setError("Error al eliminar el producto");

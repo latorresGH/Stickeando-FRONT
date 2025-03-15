@@ -109,7 +109,7 @@ const Header = () => {
                     <img
                       ref={photoRef}
                       className={styles.profilePic}
-                      src={`http://localhost:3001${user.foto_perfil}`}
+                      src={`https://stickeando.onrender.com${user.foto_perfil}`}
                       alt={`Foto de perfil de ${user.nombre || "usuario"}`}
                       onClick={toggleMenu}
                     />

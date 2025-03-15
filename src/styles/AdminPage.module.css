@@ -21,3 +21,21 @@
     background-color: #fafafa;
     margin-bottom: 4.5vh;
 }
+
+/* Celular */
+@media  (min-width: 0px) and (max-width: 479px) {
+
+    .panelDerecho {
+        flex-direction: column;
+        margin-left: 10vw;
+    }
+}
+
+/* Tablet */
+@media (min-width: 480px) and (max-width: 767px) {}
+
+/* Media entre tablet y pantalla*/
+@media (min-width: 768px) and (max-width: 1023px) {}
+
+/* Pantallas de escritorio medianas o netbooks*/
+@media (min-width: 768px) and (max-width: 1279px) {}

@@ -30,7 +30,7 @@ export const useCarrito = () => {
       if (!user) return;
     
       try {
-        const { data } = await axios.get(`http://localhost:3001/api/carrito/${user.id}`);
+        const { data } = await axios.get(`https://stickeando.onrender.com/api/carrito/${user.id}`);
         console.log("Respuesta del backend:", data); // Verifica que la estructura sea la esperada
     
         if (!data.carrito || !data.carrito.productos || !Array.isArray(data.carrito.productos)) {
@@ -59,7 +59,7 @@ export const useCarrito = () => {
     }
   
     try {
-      const carritoResponse = await axios.get(`http://localhost:3001/api/carrito/${user.id}`);
+      const carritoResponse = await axios.get(`https://stickeando.onrender.com/api/carrito/${user.id}`);
       const carrito_id = carritoResponse.data.carrito.id;
   
       if (!carrito_id) {
@@ -67,7 +67,7 @@ export const useCarrito = () => {
         return;
       }
   
-      await axios.post("http://localhost:3001/api/carritoProductos/add", {
+      await axios.post("https://stickeando.onrender.com/api/carritoProductos/add", {
         carrito_id,
         producto_id: producto.id,
         cantidad: 1,
@@ -102,8 +102,8 @@ export const useCarrito = () => {
       }
 
       // Eliminar el producto del backend
-      const response = await axios.delete(`http://localhost:3001/api/carritoProductos/remove/${carritoId}/${productoId}`);
-      console.log(`URL de eliminación: http://localhost:3001/api/carritoProductos/remove/${carritoId}/${productoId}`);
+      const response = await axios.delete(`https://stickeando.onrender.com/api/carritoProductos/remove/${carritoId}/${productoId}`);
+      console.log(`URL de eliminación: https://stickeando.onrender.com/api/carritoProductos/remove/${carritoId}/${productoId}`);
       
       console.log('Producto eliminado:', response.data);
 
@@ -119,7 +119,7 @@ export const useCarrito = () => {
     if (!user) return;
   console.log("Ejecutando fetchCarrito");
     try {
-      const { data } = await axios.get(`http://localhost:3001/api/carrito/${user.id}`);
+      const { data } = await axios.get(`https://stickeando.onrender.com/api/carrito/${user.id}`);
       console.log("Respuesta del backend:", data); // Verifica la respuesta
   
       if (!data.carrito || !data.carrito.productos || !Array.isArray(data.carrito.productos)) {

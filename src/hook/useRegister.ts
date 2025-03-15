@@ -26,7 +26,7 @@ export const useRegister = () => {
         user: Usuario;
         token: string;
         carrito?: any;
-      }>("http://localhost:3001/api/users/register", {
+      }>("https://stickeando.onrender.com/api/users/register", {
         nombre: usuario.nombre,
         email: usuario.email,
         password: usuario.password,

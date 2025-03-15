@@ -13,7 +13,7 @@ export default function DeleteProduct() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<{ products: Producto[] }>("http://localhost:3001/api/productos/listar");
+      const response = await axios.get<{ products: Producto[] }>("https://stickeando.onrender.com/api/productos/listar");
       setProducts(response.data.products); // Accede a la propiedad "products"
     } catch (error) {
       console.error("Error al obtener los productos:", error);
@@ -26,7 +26,7 @@ export default function DeleteProduct() {
   const handleDelete = async (id: number) => {
     if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
       try {
-        await axios.delete(`http://localhost:3001/api/productos/delete/${id}`);
+        await axios.delete(`https://stickeando.onrender.com/api/productos/delete/${id}`);
         setProducts(products.filter((product) => product.id !== id));
       } catch (error) {
         console.error("Error al eliminar el producto:", error);

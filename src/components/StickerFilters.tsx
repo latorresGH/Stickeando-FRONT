@@ -10,7 +10,7 @@ const CategoryFilterPanel: React.FC = () => {
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        axios.get<Categoria[]>('http://localhost:3001/api/categorias/all')
+        axios.get<Categoria[]>('https://stickeando.onrender.com/api/categorias/all')
             .then(response => setCategories(response.data))
             .catch(error => console.error('Error al obtener categorías:', error));
     }, []);

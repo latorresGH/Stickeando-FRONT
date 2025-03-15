@@ -14,7 +14,7 @@ export const useCategoryManager = () => {
   // Obtener las categorías
   const fetchCategories = async () => {
     try {
-      const response = await axios.get<Categoria[]>('http://localhost:3001/api/categorias/all');
+      const response = await axios.get<Categoria[]>('https://stickeando.onrender.com/api/categorias/all');
       setCategories(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -37,7 +37,7 @@ export const useCategoryManager = () => {
       }
   
       const response = await axios.post(
-        'http://localhost:3001/api/categorias/create',
+        'https://stickeando.onrender.com/api/categorias/create',
         { nombre: newCategoryName }, // Estás enviando 'nombre' como propiedad
         {
           headers: {
@@ -63,7 +63,7 @@ export const useCategoryManager = () => {
         return;
       }
   
-      await axios.delete(`http://localhost:3001/api/categorias/delete/${id}`, {
+      await axios.delete(`https://stickeando.onrender.com/api/categorias/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`, // Incluir el token en la cabecera
         },

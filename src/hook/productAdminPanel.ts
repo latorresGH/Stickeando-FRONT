@@ -23,7 +23,7 @@ export const useAdminPanel = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get<Producto[]>('http://localhost:3001/api/productos/list');
+      const response = await axios.get<Producto[]>('https://stickeando.onrender.com/api/productos/list');
       setProducts(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -33,7 +33,7 @@ export const useAdminPanel = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get<Categoria[]>('http://localhost:3001/api/categorias/all');
+      const response = await axios.get<Categoria[]>('https://stickeando.onrender.com/api/categorias/all');
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -52,7 +52,7 @@ export const useAdminPanel = () => {
     formData.append('imagen_url', imageUrl);
 
     try {
-      const response = await axios.post<{ product: Producto }>('http://localhost:3001/api/productos/create', formData, {
+      const response = await axios.post<{ product: Producto }>('https://stickeando.onrender.com/api/productos/create', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setProducts([...products, response.data.product]);
@@ -78,7 +78,7 @@ export const useAdminPanel = () => {
 
   const handleDeleteProduct = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:3001/api/productos/delete/${id}`);
+      await axios.delete(`https://stickeando.onrender.com/api/productos/delete/${id}`);
       setProducts(products.filter(product => product.id !== id));
     } catch (error) {
       console.error('Error deleting product:', error);
