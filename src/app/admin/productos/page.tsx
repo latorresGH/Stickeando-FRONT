@@ -3,7 +3,7 @@ import HeaderAdmin from "@/components/HeaderAdmin"
 import DeleteProduct from "@/components/DeleteProduct"
 import style from '@/styles/AdminPage.module.css'
 
-export default function () {
+export default function Productos() {
     return (
         <div className={style.contenedorPage}>
             <div>

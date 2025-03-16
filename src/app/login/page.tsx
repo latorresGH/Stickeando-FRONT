@@ -1,8 +1,8 @@
 "use client";
 import style from "@/styles/Login.module.css";
 import { useLogin } from "@/hook/useLogin";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 const LoginPage = () => {
   const { email, setEmail, password, setPassword, error, handleLogin } =
@@ -11,7 +11,7 @@ const LoginPage = () => {
   return (
     <div className={style.contenedorLogin}>
       <div className={style.loginBoxForm}>
-        <img
+        <Image
           className={style.logo}
           src="/images/logo-stickeando.png"
           alt="Logo"

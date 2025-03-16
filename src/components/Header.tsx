@@ -8,6 +8,7 @@ import Cookies from "js-cookie"; // Importamos js-cookie para manejar cookies
 import styles from '@/styles/Header.module.css';
 import { useRouter } from "next/navigation";
 
+
 const Header = () => {
   const { user, logout } = useUser();
   const router = useRouter(); 
@@ -103,12 +104,14 @@ const Header = () => {
 
                   {/* Foto de perfil */}
                   {user.foto_perfil ? (
-                    <img
+                    <Image
                       ref={photoRef}
                       className={styles.profilePic}
                       src={`https://stickeando.onrender.com${user.foto_perfil}`}
                       alt={`Foto de perfil de ${user.nombre || "usuario"}`}
                       onClick={toggleMenu}
+                      width={500}
+                      height={500}
                     />
                   ) : (
                     <span onClick={toggleMenu}>

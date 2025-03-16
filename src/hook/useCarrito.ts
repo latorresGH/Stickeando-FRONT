@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback  } from "react";
 import axios from "axios";
 import { useUser } from "../context/authContext";
 import { useCarritoContext } from "../context/carritoContext";
@@ -22,58 +22,56 @@ interface CarritoProducto {
 
 export const useCarrito = () => {
   const { carrito, setCarrito } = useCarritoContext();
-  const [carritoId, setCarritoId] = useState<number | null>(null); // Agregamos el estado para el carritoId
+  const [carritoId, setCarritoId] = useState<number | null>(null);
   const { user } = useUser();
 
-  useEffect(() => {
-    const obtenerCarrito = async () => {
-      if (!user) return;
-    
-      try {
-        const { data } = await axios.get(`https://stickeando.onrender.com/api/carrito/${user.id}`);
-        console.log("Respuesta del backend:", data); // Verifica que la estructura sea la esperada
-    
-        if (!data.carrito || !data.carrito.productos || !Array.isArray(data.carrito.productos)) {
-          console.error("La respuesta del backend no es válida:", data);
-          return;
-        }
-    
-        // Imprime los productos para asegurarte de que se están recibiendo los correctos
-        console.log("Productos en el carrito:", data.carrito.productos);
-    
-        setCarritoId(data.carrito.id); // Guardar el carritoId en el estado
-        setCarrito(data.carrito.productos); // Asignar los productos correctamente
-      } catch (error) {
-        console.error("Error al obtener el carrito", error);
-      }
-    };
-    
+  const fetchCarrito = useCallback(async () => {
+    if (!user) return;
+    try {
+      const { data } = await axios.get<{ carrito: { id: number; productos: CarritoProducto[] } }>(
+        `https://stickeando.onrender.com/api/carrito/${user.id}`
+      );
 
-    obtenerCarrito();
-  }, [user]);
+      if (!data.carrito || !Array.isArray(data.carrito.productos)) {
+        console.error("La respuesta del backend no es válida:", data);
+        return;
+      }
+
+      setCarritoId(data.carrito.id);
+      setCarrito(data.carrito.productos);
+    } catch (error) {
+      console.error("Error al obtener el carrito", error);
+    }
+  }, [user, setCarrito]); // Agregamos dependencias para que la función no cambie en cada render
+
+  useEffect(() => {
+    fetchCarrito();
+  }, [user, fetchCarrito]); // Ahora `fetchCarrito` es estable y no causa re-render innecesario
+
 
   const agregarAlCarrito = async (producto: Producto) => {
     if (!user) {
       alert("Debes iniciar sesión para agregar productos al carrito");
       return;
     }
-  
+
     try {
-      const carritoResponse = await axios.get(`https://stickeando.onrender.com/api/carrito/${user.id}`);
+      const carritoResponse = await axios.get<{ carrito: { id: number } }>(
+        `https://stickeando.onrender.com/api/carrito/${user.id}`
+      );
       const carrito_id = carritoResponse.data.carrito.id;
-  
+
       if (!carrito_id) {
         alert("No se ha encontrado un carrito para el usuario");
         return;
       }
-  
+
       await axios.post("https://stickeando.onrender.com/api/carritoProductos/add", {
         carrito_id,
         producto_id: producto.id,
         cantidad: 1,
       });
-  
-      // Actualizar el estado global
+
       const nuevoProducto: CarritoProducto = {
         id: producto.id,
         producto_id: producto.id,
@@ -81,9 +79,9 @@ export const useCarrito = () => {
         titulo: producto.titulo,
         precio: producto.precio.toString(),
         imagen_url: producto.imagen_url,
-        carrito_id: carrito_id,
+        carrito_id,
       };
-  
+
       setCarrito((prevCarrito) => [...prevCarrito, nuevoProducto]);
     } catch (error) {
       console.error("Error al agregar producto al carrito", error);
@@ -91,54 +89,25 @@ export const useCarrito = () => {
     }
   };
 
-
   const eliminarProducto = async (productoId: number) => {
     try {
-      console.log('Eliminar producto con ID:', productoId); // Verifica que el ID del producto es correcto
-
       if (!carritoId) {
-        alert('No se encontró el carrito');
+        alert("No se encontró el carrito");
         return;
       }
 
-      // Eliminar el producto del backend
-      const response = await axios.delete(`https://stickeando.onrender.com/api/carritoProductos/remove/${carritoId}/${productoId}`);
-      console.log(`URL de eliminación: https://stickeando.onrender.com/api/carritoProductos/remove/${carritoId}/${productoId}`);
-      
-      console.log('Producto eliminado:', response.data);
+      await axios.delete(`https://stickeando.onrender.com/api/carritoProductos/remove/${carritoId}/${productoId}`);
 
-      // Actualizamos el carrito en el estado local sin hacer un nuevo fetch
-      setCarrito(prevCarrito => prevCarrito.filter(producto => producto.id !== productoId));
-    } catch (error: any) {
-      console.error('Error al eliminar el producto:', error.response ? error.response.data : error);
-      alert('Error al eliminar el producto');
-    }
-  };
-
-  const fetchCarrito = async () => {
-    if (!user) return;
-  console.log("Ejecutando fetchCarrito");
-    try {
-      const { data } = await axios.get(`https://stickeando.onrender.com/api/carrito/${user.id}`);
-      console.log("Respuesta del backend:", data); // Verifica la respuesta
-  
-      if (!data.carrito || !data.carrito.productos || !Array.isArray(data.carrito.productos)) {
-        console.error("La respuesta del backend no es válida:", data);
-        return;
-      }
-  
-      setCarrito(data.carrito.productos);
+      setCarrito((prevCarrito) => prevCarrito.filter((producto) => producto.id !== productoId));
     } catch (error) {
-      console.error("Error al obtener el carrito", error);
+      console.error("Error al eliminar el producto:", error);
+      alert("Error al eliminar el producto");
     }
   };
-  
 
-  // Fetch del carrito cuando el usuario cambia
   useEffect(() => {
     fetchCarrito();
-  }, [user]);
+  }, [user, fetchCarrito]);
 
-
-  return { carrito, agregarAlCarrito, fetchCarrito, eliminarProducto ,carritoId };
+  return { carrito, agregarAlCarrito, fetchCarrito, eliminarProducto, carritoId };
 };

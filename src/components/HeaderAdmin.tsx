@@ -30,10 +30,12 @@ const HeaderAdmin = () => {
                 {/* Foto de perfil */}
                 {user.foto_perfil ? (
                   <Link href={`/profile`}>
-                    <img
+                    <Image
                       className={styles.profilePic}
                       src={`https://stickeando.onrender.com${user.foto_perfil}`}
                       alt={`Foto de perfil de ${user.nombre || "usuario"}`}
+                      width={500}
+                      height={500}
                     />
                   </Link>
                 ) : (

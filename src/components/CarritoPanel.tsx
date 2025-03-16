@@ -2,6 +2,7 @@ import React from "react";
 import { useCarrito } from "@/hook/useCarrito";
 import { useUser } from "@/context/authContext"; // Para obtener el usuario autenticado
 import styles from "@/styles/CarritoPanel.module.css";
+import Image from "next/image";
 
 interface CarritoPanelProps {
   isOpen: boolean;
@@ -52,10 +53,12 @@ const generarMensajeWhatsApp = () => {
         <ul className={styles.listaCarrito}>
           {carrito.map((producto) => (
             <li key={producto.id} className={styles.carritoItem}>
-              <img
+              <Image
                 src={`https://stickeando.onrender.com/api/imagenProducto/${producto.imagen_url}`}
                 alt={producto.titulo}
                 className={styles.carritoImagen}
+                width={500}
+                height={500}
               />
               <div className={styles.carritoInfo}>
                 <h3>{producto.titulo}</h3>

@@ -12,7 +12,6 @@ import { useRouter } from "next/navigation";
 const Header = () => {
   const { user, logout } = useUser();
   const router = useRouter(); 
-  const [carritoUuid, setCarritoUuid] = useState<string | null>(null);
   const [isCarritoOpen, setIsCarritoOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,13 +20,11 @@ const Header = () => {
 
   useEffect(() => {
     let storedUuid = Cookies.get("carrito_uuid");
-
+  
     if (!storedUuid) {
       storedUuid = crypto.randomUUID();
       Cookies.set("carrito_uuid", storedUuid, { expires: 7, path: "/" });
     }
-
-    setCarritoUuid(storedUuid);
   }, []);
 
   const handleLogout = () => {
@@ -106,12 +103,14 @@ const Header = () => {
                 <div className={styles.userMenu}>
                   <span className={styles.mensajeNombre}> Hola! {user.nombre || "Usuario"}</span>
                   {user.foto_perfil ? (
-                    <img
+                    <Image
                       ref={photoRef}
                       className={styles.profilePic}
                       src={`https://stickeando.onrender.com${user.foto_perfil}`}
                       alt={`Foto de perfil de ${user.nombre || "usuario"}`}
                       onClick={toggleMenu}
+                      width={500}
+                      height={500}
                     />
                   ) : (
                     <span onClick={toggleMenu}>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { CarritoProducto } from "@/types/CarritoProducto";
 
@@ -7,23 +7,22 @@ export const useCarritoProducto = (carritoId: string) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (carritoId) fetchProductos();
-  }, [carritoId]);
-
-  const fetchProductos = async () => {
+  const fetchProductos = useCallback(async () => {
+    if (!carritoId) return;
     setLoading(true);
     try {
-      const response = await axios.get<CarritoProducto[]>(
-        `https://stickeando.onrender.com/api/CarritoProductos/${carritoId}`
-      );
+      const response = await axios.get<CarritoProducto[]>(`https://stickeando.onrender.com/api/CarritoProductos/${carritoId}`);
       setProductos(response.data);
-    } catch (error) {
+    } catch {
       setError("Error al obtener los productos del carrito");
     } finally {
       setLoading(false);
     }
-  };
+  }, [carritoId]);
+
+  useEffect(() => {
+    fetchProductos();
+  }, [carritoId, fetchProductos]);
 
   const addProducto = async (productoId: string, cantidad: number) => {
     setLoading(true);
@@ -32,8 +31,8 @@ export const useCarritoProducto = (carritoId: string) => {
         "https://stickeando.onrender.com/api/CarritoProductos/add",
         { carrito_id: carritoId, producto_id: productoId, cantidad }
       );
-      setProductos([...productos, response.data]);
-    } catch (error) {
+      setProductos((prev) => [...prev, response.data]);
+    } catch {
       setError("Error al agregar el producto");
     } finally {
       setLoading(false);
@@ -44,8 +43,8 @@ export const useCarritoProducto = (carritoId: string) => {
     setLoading(true);
     try {
       await axios.delete(`https://stickeando.onrender.com/api/CarritoProductos/remove/${id}`);
-      setProductos(productos.filter((producto) => producto.id !== Number(id)));
-    } catch (error) {
+      setProductos((prev) => prev.filter((producto) => producto.id !== Number(id)));
+    } catch {
       setError("Error al eliminar el producto");
     } finally {
       setLoading(false);

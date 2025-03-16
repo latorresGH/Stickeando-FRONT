@@ -2,7 +2,7 @@ import CategoryManager from "@/components/CategoryManager"
 import HeaderAdmin from "@/components/HeaderAdmin"
 import style from '@/styles/AdminPage.module.css'
 
-export default function () {
+export default function Categorias() {
     return (
         <div className={style.contenedorPage}>
             <div>

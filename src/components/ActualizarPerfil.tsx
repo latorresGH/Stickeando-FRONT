@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "@/styles/Profile.module.css";
 import { useUser } from "@/context/authContext";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const fotosPerfil = ["profile1.jpg", "profile2.jpg", "profile3.jpg"];
@@ -16,7 +17,6 @@ const ActualizarPerfil: React.FC = () => {
   const [foto, setFoto] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  
 
   const validarNombre = (nombre: string) =>
     /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(nombre);
@@ -44,22 +44,24 @@ const ActualizarPerfil: React.FC = () => {
     }
 
     try {
-      const response = await axios.put(
-        "https://stickeando.onrender.com/api/users/update",
-        {
-          id: user?.id,
-          nombre,
-          password,
-          confirmPassword,
-          foto,
-        }
-      );
+      // const response =
+      await axios.put("https://stickeando.onrender.com/api/users/update", {
+        id: user?.id,
+        nombre,
+        password,
+        confirmPassword,
+        foto,
+      });
       setSuccess("Perfil actualizado exitosamente");
       setTimeout(() => router.push("/profile"), 2000);
-    } catch (error: any) {
-      setError(
-        error.response?.data?.message || "Error al actualizar el perfil."
-      );
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        setError(
+          error.response?.data?.message || "Error al actualizar el perfil."
+        );
+      } else {
+        setError("Error desconocido al actualizar el perfil.");
+      }
     }
   };
 
@@ -68,20 +70,22 @@ const ActualizarPerfil: React.FC = () => {
       <h2 className={styles.title}>Actualizar Perfil</h2>
       <div className={styles.perfilActual}>
         {user?.id && (
-          <img
+          <Image
             src={`https://stickeando.onrender.com/api/users/photo/${user.id}`}
             alt="Foto actual"
             className={styles.fotoActual}
+            width={500}
+            height={500}
           />
         )}
 
         {user?.nombre && <p className={styles.nombreActual}>{user.nombre}</p>}
       </div>
-      
+
       {error && <p className={styles.error}>{error}</p>}
       {success && <p className={styles.success}>{success}</p>}
 
-      <div className={styles.contenedorFormulario} >
+      <div className={styles.contenedorFormulario}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <input
             type="text"
@@ -108,9 +112,11 @@ const ActualizarPerfil: React.FC = () => {
             <p className={styles.photoTitle}>Elegí una foto de perfil:</p>
             <div className={styles.photoList}>
               {fotosPerfil.map((src) => (
-                <img
+                <Image
                   key={src}
-                  src={src}
+                  src={`https://stickeando.onrender.com/api/images/profile/${src}`} // Aquí concatenamos la URL base
+                  width={500}
+                  height={500}
                   alt="Foto de perfil"
                   className={`${styles.photo} ${
                     foto === src ? styles.selected : ""
@@ -123,7 +129,8 @@ const ActualizarPerfil: React.FC = () => {
           <div className={styles.buttonContainer}>
             <button type="submit" className={styles.submitButton}>
               {/* Actualizar Perfil */}
-              <span className={styles.spanHover}>Actualizar</span><span>Gracias!</span>
+              <span className={styles.spanHover}>Actualizar</span>
+              <span>Gracias!</span>
             </button>
           </div>
         </form>

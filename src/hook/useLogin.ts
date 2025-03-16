@@ -13,6 +13,7 @@ export const useLogin = () => {
       await login(email, password); // Llama a la función de login desde el contexto
       window.location.href = "/home"; // Redirige al usuario a la página principal
     } catch (err) {
+      console.error("Error en el login:", err); // Muestra el error en la consola
       setError("Credenciales incorrectas o problemas en el servidor");
     }
   };

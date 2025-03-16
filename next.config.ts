@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ["stickeando.onrender.com"], // Permite imágenes de este dominio
+  },
 };
 
 export default nextConfig;

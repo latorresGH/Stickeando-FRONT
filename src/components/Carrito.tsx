@@ -3,6 +3,7 @@ import React from "react";
 import { useCarrito } from "@/hook/useCarrito";
 import { useUser } from "@/context/authContext"; // Para obtener el usuario autenticado
 import styles from "@/styles/Carrito.module.css";
+import Image from "next/image";
 
 const Carrito = () => {
   const { carrito, eliminarProducto } = useCarrito();
@@ -46,7 +47,7 @@ const Carrito = () => {
             <div key={carritoProducto.id} className={styles.cajaContenedora}>
               <div className={styles.contenedorProducto}>
                 <div className={styles.producto}>
-                  <img
+                  <Image
                   className={styles.imagenProducto}
                     src={`https://stickeando.onrender.com/api/imagenProducto/${carritoProducto.imagen_url}`} // Aquí se muestra la imagen
                     alt={carritoProducto.titulo}

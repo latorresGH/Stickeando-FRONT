@@ -4,6 +4,7 @@ import { useRegister } from "@/hook/useRegister";
 import { useRouter } from "next/navigation";
 import styles from "@/styles/Register.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 const RegisterPage = () => {
   const { registerUser, isLoading, error, successMessage } = useRegister();
@@ -40,7 +41,7 @@ const RegisterPage = () => {
       <div className={styles.registerBoxForm}>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-        <img
+        <Image
           className={styles.logo}
           src="/images/logo-stickeando.png"
           alt="Logo"
