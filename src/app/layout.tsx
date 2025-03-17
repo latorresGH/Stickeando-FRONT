@@ -44,23 +44,23 @@ export default function RootLayout({
               name="description"
               content="Este es el sitio web de Stickeando, donde podrás encontrar lo mejor para personalizar tus productos."
             />
-            <meta property="og:title" content="Mi Nueva Aplicación" />
+            <meta property="og:title" content="Stickeando" />
             <meta
               property="og:description"
               content="Este es el sitio web de Stickeando, donde podrás encontrar lo mejor para personalizar tus productos."
             />
-            <meta property="og:image" content="/images/logo-stickeando.png" />
-            <meta property="og:url" content="https://tusitio.com" />
+            <meta property="og:image" content="/Logo.png" />
+            <meta property="og:url" content="https://stickeando.vercel.app/" />
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="Mi Nueva Aplicación" />
+            <meta name="twitter:title" content="Stickeando" />
             <meta
               name="twitter:description"
               content="Este es el sitio web de Stickeando, donde podrás encontrar lo mejor para personalizar tus productos."
             />
-            <meta name="twitter:image" content="/images/logo-stickeando.png" />
+            <meta name="twitter:image" content="/Logo.png" />
             <link
               rel="icon"
-              href="/images/logo-stickeando.png"
+              href="/Logo.png"
               type="image/png"
             />
           </head>
