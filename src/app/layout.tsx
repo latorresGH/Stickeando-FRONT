@@ -40,6 +40,7 @@ export default function RootLayout({
         <html lang="en">
           <head>
             <title>Stickeando</title>
+            <link rel="icon" href="/favicon.ico" type="image/x-icon" />
             <meta
               name="description"
               content="Este es el sitio web de Stickeando, donde podrás encontrar lo mejor para personalizar tus productos."
@@ -58,11 +59,8 @@ export default function RootLayout({
               content="Este es el sitio web de Stickeando, donde podrás encontrar lo mejor para personalizar tus productos."
             />
             <meta name="twitter:image" content="/Logo.png" />
-            <link
-              rel="icon"
-              href="/Logo.png"
-              type="image/png"
-            />
+
+
           </head>
           <body
             className={`${geistSans.variable} ${geistMono.variable} ${inter.variable}`}
