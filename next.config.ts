@@ -10,13 +10,14 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/old-route',
-        destination: '/new-route',
+        source: "/",
+        destination: "/home",
         permanent: true,
-      },
+      }
     ]
   },
   reactStrictMode: true, // Es una buena práctica mantener el modo estricto activado
+  
 };
 
 export default nextConfig;

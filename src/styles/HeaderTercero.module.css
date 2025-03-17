@@ -166,6 +166,26 @@
     width: 45px;
     margin: 0;
   }
+
+  .newUser {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+  }
+
+  .login {
+    padding: 2vw 2.5vw;
+    font-size: 0.7rem;
+    text-align: center;
+  }
+
+  .register {
+    padding: 4px 0px;
+    font-size: 0.7rem;
+    text-align: center;
+    display: none;
+  }
 }
 
 /* Tablet */
@@ -194,6 +214,14 @@
     height: 45px;
     width: 45px;
     margin: 0;
+  }
+
+  .login {
+    padding: 1vh 1vh;
+  }
+
+  .register {
+    padding: 1vh 1vh;
   }
 }
 
@@ -224,6 +252,14 @@
     width: 45px;
     margin: 0;
   }
+
+  .login {
+    padding: 1vh 1vh;
+  }
+
+  .register {
+    padding: 1vh 1vh;
+  }
 }
 
 /* Pantallas de escritorio medianas o netbooks*/
@@ -253,4 +289,5 @@
     width: 45px;
     margin: 0;
   }
+
 }
