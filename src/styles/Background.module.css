@@ -31,8 +31,8 @@
   }
 
   .tittle:hover {
-    color: rgb(33, 33, 33);
-    font-size: 6.8rem; /* Ajusta el tamaño según sea necesario */
+    color: rgb(197, 65, 65);
+    font-size: 6.8rem; 
   }
   
   .subtittle {
@@ -76,6 +76,12 @@
       font-size: 0.7rem;
       transform: translate(-50%, -80%);
     }
+
+    .tittle:hover {
+      /* Desactivamos el hover en pantallas pequeñas */
+      color: white; /* Mantiene el color original */
+      font-size: 2.4rem; /* Mantiene el tamaño original */
+  }
   }
 
   /* Media entre celular y tablet */
@@ -88,6 +94,13 @@
       font-size: 0.8rem;
       transform: translate(-50%, -70%);
     }
+
+    .tittle:hover {
+      /* Desactivamos el hover en pantallas pequeñas */
+      color: white; /* Mantiene el color original */
+      font-size: 4rem; /* Mantiene el tamaño original */
+  }
+
   }
 
   /* Tablets */
