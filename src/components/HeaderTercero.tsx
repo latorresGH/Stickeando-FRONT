@@ -78,7 +78,7 @@ const Header = () => {
                 <Link href="/products">Productos</Link>
               </li>
               <li className={styles.active}>
-                <Link href="/contacto">Contacto</Link>
+                {/* <Link href="/contacto">Contacto</Link> */}
               </li>
               <li>
                 <Link href={carritoLink}>

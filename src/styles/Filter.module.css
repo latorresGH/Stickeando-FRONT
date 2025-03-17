@@ -1,7 +1,7 @@
 .filterContenedor {
     background: white;
     width: 18vw;
-    height: 83.5vh;
+    min-height: 20vh; /* En lugar de height, usamos min-height */
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -84,7 +84,7 @@
     .filterContenedor {
       background: white;
       width: 90vw;
-      height: 70.5vh;
+      min-height: 20vh; /* En lugar de height, usamos min-height */
       padding: 1rem;
       border-radius: 0.5rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -96,7 +96,7 @@
     .filterContenedor {
       background: white;
       width: 90vw;
-      height: 70.5vh;
+      min-height: 20vh; /* En lugar de height, usamos min-height */
       padding: 1rem;
       border-radius: 0.5rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -114,7 +114,7 @@
     .filterContenedor {
       background: white;
       width: 25vw;
-      height: 70.5vh;
+      min-height: 20vh; /* En lugar de height, usamos min-height */
       padding: 1rem;
       border-radius: 0.5rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
