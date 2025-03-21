@@ -19,7 +19,7 @@ const HeaderAdmin = () => {
           <div className={styles.logoContainer}>
             <Link href="/home" className={styles.logoLink}>
               <Image 
-                src="/logo.png"
+                src="/images/logo-stickeando.png"
                 alt={`Logo de la tienda"}`}
                 width={500}
                 height={500}
