@@ -102,6 +102,17 @@
     transition: all 0.5s ease;
   }
 
+  .navHeader {
+    height: 100%;
+  }
+
+  .menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   .links {
     display: flex;
     align-items: center;
@@ -128,6 +139,16 @@
     align-items: center;
   }
 
+  .logoLink {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .logo {
+    border-radius: 50%;
+    border: none;
+  }
+
   /* Celular */
   @media  (min-width: 0px) and (max-width: 479px) {
 
@@ -142,9 +163,8 @@
     }
  
     .svgs {
-      width: 15vw;
-      height: 4vh;
-      border-left: 1px solid rgb(199, 199, 199);
+      width: 35px;
+      height: 35px;
       padding-left: 2vw;
     }
 
@@ -152,19 +172,14 @@
       display: none;
     }
 
-    .menu {
-      display: flex;
-    }
-
-    .userInfo {
-      margin: 0;
-      display: flex;
-    }
-
     .navLinks {
       display: flex;
-      margin-left: 12%;
       gap: 5px;
+      margin: 0;
+    }
+
+    .navLinks li {
+      margin: 0;
     }
 
     .profilePic {
@@ -175,6 +190,44 @@
       margin-bottom: 0;
     }
 
+
+    .navHeader {
+      width: 100%;
+    }
+
+    .menu {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .userInfo {
+      margin-bottom: 0;
+    }
+
+    .userName {
+      display: none;
+    }
+
+    .navContainer {
+      display: flex;
+    }
+
+    .tituloStickeando {
+      display: none;
+  }
+
+  .logoContainer {
+    margin: 0;
+  }
+
+  .logo {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
   }
 
   /* Tablet */
@@ -194,6 +247,10 @@
       flex-direction: column;
     }
 
+    .tituloStickeando {
+      display: none;
+    }
+
   }
 
   /* Media entre tablet y pantalla*/
@@ -209,10 +266,25 @@
       flex-direction: column;
     }
 
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .tituloStickeando {
+      display: none;
+    }
+
+    .authLinks {
+      font-size: 0.8rem;
+    }
+
   }
 
   /* Pantallas de escritorio medianas o netbooks*/
   @media (min-width: 768px) and (max-width: 1279px) {
-
-
+    .tituloStickeando {
+      display: none;
+    }
   }

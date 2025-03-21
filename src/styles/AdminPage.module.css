@@ -2,9 +2,9 @@
     margin-left: 18vw;
     display: flex;
     gap: 2vw;
-    height: 100vh;
+    min-height: 55vh;
+    margin-top: 2vw;
 }
-
 .contenedorPage {
     padding-bottom: 4.5vh;
     background-color: rgb(238, 238, 238);

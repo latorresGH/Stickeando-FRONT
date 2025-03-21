@@ -1,0 +1,232 @@
+.container {
+    background-color: white;
+    border-radius: 15px;
+    padding: 2vh;
+    width: 35vw;
+    height: 46vh;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    transition: all 0.5s ease;
+    flex-direction: column;
+    }
+  
+    .container:hover {
+      box-shadow: 4px 4px 15px rgba(255, 0, 0, 0.219);
+    }
+    
+    .title {
+      text-align: center;
+    }
+
+    .imageScrollContainer {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto; /* Permite el scroll horizontal */
+        padding: 10px;
+        white-space: nowrap;
+        max-width: 100%; /* Evita que se desborde */
+        scrollbar-width: thin; /* Hace visible el scrollbar en Firefox */
+        scrollbar-color: gray transparent;
+    }
+    
+    /* Para navegadores basados en WebKit (Chrome, Edge, Safari) */
+    .imageScrollContainer::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    .imageScrollContainer::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .imageScrollContainer::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 4px;
+    }
+    
+    .imageWrapper {
+        flex: 0 0 auto;
+        text-align: center;
+    }
+    
+    .backgroundImage {
+        width: 200px;
+        height: 100px;
+        object-fit: cover;
+        border: 1px solid gray;
+    }
+
+    
+    .button {
+        background-color: #ff4d4d; /* Rojo suave */
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-weight: bold;
+    }
+    
+    .button:hover {
+        background-color: #e60000; /* Rojo más fuerte */
+        transform: scale(1.05);
+    }
+    
+    .button:active {
+        background-color: #cc0000; /* Rojo oscuro */
+        transform: scale(0.98);
+    }
+    
+    /* Estilo para el botón de eliminar */
+    .deleteButton {
+        background-color: #444; /* Gris oscuro */
+    }
+    
+    .deleteButton:hover {
+        background-color: #222; /* Más oscuro al pasar el mouse */
+    }
+    
+    /* Contenedor de los botones */
+    .buttonContainer {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 8px;
+    }
+    
+    /* Resalta el background seleccionado */
+.selected {
+    border: 1.5px solid rgb(182, 0, 0);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Agrega una transición para suavizar el efecto */
+.fileInput {
+    display: none; /* Oculta el input de archivo */
+  }
+  
+  .uploadLabel {
+    padding: 0.8vh 1vw;
+    font-size: 0.8rem;
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    display: inline-block;
+    margin: 2vh 2vh 0 2vh;
+  }
+  
+  .uploadLabel:hover {
+    background-color: #252525;
+    color: white;
+  }
+  
+  .uploadButton {
+    cursor: pointer;
+    padding: 0.8vh 1vw;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: #212121;
+    z-index: 1;
+    background: #ffffff;
+    position: relative;
+    font-size: 13px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+    overflow: hidden;
+  }
+  
+  .uploadButton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 4px;
+    background-color: #212121;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+  }
+  
+  .uploadButton:hover {
+    color: #e8e8e8;
+  }
+  
+  .uploadButton:hover::before {
+    width: 100%;
+  }
+  
+  .contenedorBoton {
+    display: flex;
+    margin: 0 2vh 2vh 2vh;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .selectedFileText {
+    font-size: 0.8rem;
+  }
+  
+  .ulDeshacer {
+    text-align: center;
+    font-size: 0.9rem;
+    list-style: none;
+  }
+  
+  .ulDeshacer button {
+    cursor: pointer;
+    background-color: rgb(255, 181, 181);
+    border-radius: 4px;
+    padding: 0.4vh 0.6vw;
+    border: 1px solid black;
+    transition: all 0.5s ease;
+  }
+  
+  .ulDeshacer button:hover {
+    background-color: rgb(255, 45, 45);
+  }
+  
+  .titulo {
+    text-align: center;
+  }
+  
+
+  @media  (min-width: 0px) and (max-width: 479px) {
+
+    .container {
+        width: 80vw;
+    }
+    .backgroundImage {
+        width: 150px;
+        height: 75px;
+        object-fit: cover;
+        border: 1px solid gray;
+    }
+
+    .button {
+        padding: 4px 8px;
+    }
+}
+
+
+/* Media entre tablet y pantalla*/
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .backgroundImage {
+        width: 150px;
+        height: 75px;
+        object-fit: cover;
+        border: 1px solid gray;
+    }
+
+    .button {
+        padding: 4px 8px;
+    }
+}

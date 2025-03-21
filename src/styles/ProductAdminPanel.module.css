@@ -140,6 +140,11 @@
   display: flex;
   margin: 2vh;
   justify-content: center;
+  flex-direction: column;
+}
+
+.selectedFileText {
+  font-size: 0.8rem;
 }
 
 .ulDeshacer {

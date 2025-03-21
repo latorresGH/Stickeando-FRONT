@@ -1,6 +1,5 @@
-// components/AdminPanel.tsx
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useAdminPanel } from "@/hook/productAdminPanel";
 import styles from "@/styles/ProductAdminPanel.module.css";
 
@@ -14,8 +13,20 @@ const AdminPanel = () => {
     handleCheckboxChange,
     handleDeleteProduct,
     successMessage,
-    loading, // Usamos el estado de carga
+    loading,
   } = useAdminPanel();
+
+  const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setNewProduct({ ...newProduct, imageUrl: file });
+      setSelectedFileName(file.name);
+    } else {
+      setSelectedFileName(null);
+    }
+  };
 
   return (
     <div>
@@ -70,23 +81,28 @@ const AdminPanel = () => {
             Seleccionar imagen de sticker
           </label>
           <div className={styles.contenedorBoton}>
-            <input
-              id="fileInput"
-              type="file"
-              className={styles.fileInput}
-              onChange={(e) =>
-                setNewProduct({
-                  ...newProduct,
-                  imageUrl: e.target.files ? e.target.files[0] : null,
-                })
-              }
-            />
+            <div className={styles.fileInputContainer}>
+              <input
+                id="fileInput"
+                type="file"
+                className={styles.fileInput}
+                onChange={handleFileChange}
+              />
+
+              <div>
+                {selectedFileName && (
+                  <p className={styles.selectedFileText}>
+                    {selectedFileName} seleccionada
+                  </p>
+                )}
+              </div>
+            </div>
             <button onClick={handleCreateProduct} className={styles.uploadButton}>
               Agregar producto
             </button>
           </div>
 
-          {/* Mensaje de éxito o carga */}
+
           {loading ? (
             <p>Cargando...</p>
           ) : successMessage ? (

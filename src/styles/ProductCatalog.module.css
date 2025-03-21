@@ -62,9 +62,9 @@
   
   .productImage {
     width: auto;
-    height: 250px;
-    max-width: 250px;
-    max-height: 250px;
+    height: auto;
+    min-width: 250px;
+    min-height: 250px;
     border: none !important;
     clip-path: inset(1.4px); /* borra los bordes */
     /* min-width: 250px;

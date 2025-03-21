@@ -2,9 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3001",
+      },
+    ],
     domains: [
-      "stickeando.onrender.com",  // Si tus imágenes están alojadas en Render
-      "stickeando.vercel.app",    // Si las imágenes están alojadas en Vercel
+      "stickeando.onrender.com",  
+      "stickeando.vercel.app",
     ],
   },
   async redirects() {
@@ -13,11 +20,10 @@ const nextConfig: NextConfig = {
         source: "/",
         destination: "/home",
         permanent: true,
-      }
-    ]
+      },
+    ];
   },
-  reactStrictMode: true, // Es una buena práctica mantener el modo estricto activado
-  
+  reactStrictMode: true,
 };
 
 export default nextConfig;
