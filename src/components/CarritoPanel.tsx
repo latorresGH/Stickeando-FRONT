@@ -3,6 +3,7 @@ import { useCarrito } from "@/hook/useCarrito";
 import { useUser } from "@/context/authContext"; // Para obtener el usuario autenticado
 import styles from "@/styles/CarritoPanel.module.css";
 import Image from "next/image";
+import { jsPDF } from "jspdf";
 
 interface CarritoPanelProps {
   isOpen: boolean;
@@ -12,33 +13,82 @@ interface CarritoPanelProps {
 const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
   const { carrito, eliminarProducto } = useCarrito();
   const { user } = useUser(); // Obtener el usuario autenticado
+  const telefonoVendedor = "5493425017854"; // Número de WhatsApp del vendedor
 
-  const telefonoVendedor = "5493425824554"; // Número de WhatsApp del vendedor
+  // Función para generar el PDF como Blob
+  const generarPDFBlob = () => {
+    const doc = new jsPDF();
+    const nombreUsuario = user ? user.nombre : "Cliente Anónimo";
+    const listaProductos = carrito
+      .map((producto) => `${producto.titulo} x${producto.cantidad}`)
+      .join("\n");
 
-const generarMensajeWhatsApp = () => {
-  if (carrito.length === 0) {
-    alert("Tu carrito está vacío.");
-    return;
-  }
+    const precioTotal = carrito.reduce(
+      (total, producto) => total + Number(producto.precio) * Number(producto.cantidad),
+      0
+    );
 
-  const nombreUsuario = user ? user.nombre : "Cliente Anónimo";
-  const listaProductos = carrito
-    .map((producto) => `- ${producto.titulo} x${producto.cantidad}`)
-    .join("\n");
+    doc.text(`Pedido de ${nombreUsuario}`, 10, 10);
+    doc.text(`Productos:\n${listaProductos}`, 10, 20);
+    doc.text(`Precio Total: $${precioTotal.toFixed(2)}`, 10, 40);
 
-  // Forzamos precio y cantidad a tipo número para evitar el error
-  const precioTotal = carrito.reduce(
-    (total, producto) => total + Number(producto.precio) * Number(producto.cantidad),
-    0
-  );
+    // Crear el Blob del PDF
+    const pdfBlob = doc.output("blob");
+    return pdfBlob;
+  };
 
-  const mensaje = `Hola, soy ${nombreUsuario}. Quisiera comprar los siguientes stickers:\n\n${listaProductos}\n\nPrecio Total: $${precioTotal.toFixed(
-    2
-  )}`;
+  const enviarPDFAlBackend = async (pdfBlob: Blob) => {
+    const formData = new FormData();
+    formData.append("file", pdfBlob);
+    formData.append("carrito", JSON.stringify(carrito));
+    formData.append("usuario", JSON.stringify(user || {}));
 
-  const urlWhatsApp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(mensaje)}`;
-  window.open(urlWhatsApp, "_blank");
-};
+    const response = await fetch("https://stickeando.onrender.com/api/generarPDF", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("PDF generado con éxito");
+
+      // Aquí devolvemos la URL completa del archivo PDF generado
+      return data.filePath;
+    } else {
+      console.error("Error al generar el PDF");
+    }
+  };
+
+  const generarMensajeWhatsApp = async () => {
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
+    }
+
+    console.log("Carrito antes de generar el PDF:", carrito);  // Verificar los productos en el carrito
+
+    const pdfBlob = generarPDFBlob();  // Función para obtener el PDF como Blob
+    const urlArchivo = await enviarPDFAlBackend(pdfBlob);  // Subir el archivo y obtener la URL
+
+    const nombreUsuario = user ? user.nombre : "Cliente Anónimo";
+    const listaProductos = carrito
+      .map((producto) => `- ${producto.titulo} x${producto.cantidad}`)
+      .join("\n");
+
+    const precioTotal = carrito.reduce(
+      (total, producto) => total + Number(producto.precio) * Number(producto.cantidad),
+      0
+    );
+
+    // Aquí usamos la URL completa devuelta por el backend
+    const mensaje = `Hola, soy ${nombreUsuario}. Quisiera comprar los siguientes stickers:\n\n${listaProductos}\n\nPrecio Total: $${precioTotal.toFixed(
+      2
+    )}\n\nAquí está el PDF de mi pedido: ${urlArchivo}`;
+
+    const urlWhatsApp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(mensaje)}`;
+    window.open(urlWhatsApp, "_blank");
+  };
+
 
   return (
     <div className={`${styles.carritoPanel} ${isOpen ? styles.open : ""}`}>
