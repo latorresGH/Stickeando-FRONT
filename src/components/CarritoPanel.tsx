@@ -13,7 +13,7 @@ interface CarritoPanelProps {
 const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
   const { carrito, eliminarProducto } = useCarrito();
   const { user } = useUser(); // Obtener el usuario autenticado
-  const telefonoVendedor = "5493425017854"; // Número de WhatsApp del vendedor
+  const telefonoVendedor = "5493425824554"; // Número de WhatsApp del vendedor
 
   // Función para generar el PDF como Blob
   const generarPDFBlob = () => {
