@@ -2,16 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3001",
-      },
-    ],
+    // remotePatterns: [
+    //   {
+    //     protocol: "http",
+    //     hostname: "localhost",
+    //     port: "3001",
+    //   },
+    // ],
     domains: [
       "stickeando.onrender.com",  
       "stickeando.vercel.app",
+      "res.cloudinary.com",
     ],
   },
   async redirects() {
