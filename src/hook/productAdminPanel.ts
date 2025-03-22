@@ -40,31 +40,60 @@ export const useAdminPanel = () => {
     }
   };
 
+  // const handleCreateProduct = async () => {
+  //   const { title, price, categoryIds, imageUrl } = newProduct;
+  //   if (!title || !price || !categoryIds.length || !imageUrl) return;
+
+  //   setLoading(true); // Iniciar carga
+  //   const formData = new FormData();
+  //   formData.append('titulo', title);
+  //   formData.append('precio', price);
+  //   formData.append('categoria_id', categoryIds.join(','));
+  //   formData.append('imagen_url', imageUrl);
+
+  //   try {
+  //     const response = await axios.post<{ product: Producto }>('https://stickeando.onrender.com/api/productos/create', formData, {
+  //       headers: { 'Content-Type': 'multipart/form-data' }
+  //     });
+  //     setProducts([...products, response.data.product]);
+  //     setNewProduct({ title: '', price: '', categoryIds: [], imageUrl: null });
+  //     setSuccessMessage('Producto subido correctamente'); // Mostrar mensaje de éxito
+  //   } catch (error) {
+  //     console.error('Error creating product:', error);
+  //     setSuccessMessage('Hubo un error al subir el producto'); // Mensaje de error
+  //   } finally {
+  //     setLoading(false); // Finalizar carga
+  //   }
+  // };
+
   const handleCreateProduct = async () => {
     const { title, price, categoryIds, imageUrl } = newProduct;
     if (!title || !price || !categoryIds.length || !imageUrl) return;
-
-    setLoading(true); // Iniciar carga
+  
+    setLoading(true);
+  
     const formData = new FormData();
     formData.append('titulo', title);
     formData.append('precio', price);
     formData.append('categoria_id', categoryIds.join(','));
-    formData.append('imagen_url', imageUrl);
-
+    formData.append('imagen', imageUrl); // La imagen se envía como archivo
+  
     try {
-      const response = await axios.post<{ product: Producto }>('https://stickeando.onrender.com/api/productos/create', formData, {
+      const response = await axios.post('https://stickeando.onrender.com/api/productos/create', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
+  
       setProducts([...products, response.data.product]);
       setNewProduct({ title: '', price: '', categoryIds: [], imageUrl: null });
-      setSuccessMessage('Producto subido correctamente'); // Mostrar mensaje de éxito
+      setSuccessMessage('Producto subido correctamente');
     } catch (error) {
       console.error('Error creating product:', error);
-      setSuccessMessage('Hubo un error al subir el producto'); // Mensaje de error
+      setSuccessMessage('Hubo un error al subir el producto');
     } finally {
-      setLoading(false); // Finalizar carga
+      setLoading(false);
     }
   };
+  
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;

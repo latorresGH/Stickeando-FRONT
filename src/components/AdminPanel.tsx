@@ -1,3 +1,4 @@
+// File: AdminPanel.tsx
 "use client";
 import React, { useState } from "react";
 import { useAdminPanel } from "@/hook/productAdminPanel";

@@ -64,7 +64,7 @@ const ProductCatalog = () => {
               <h2 className={style.productTitle}>{product.titulo}</h2>
               <div className={style.productImageContainer}>
                 <Image
-                  src={`https://stickeando.onrender.com/api/imagenProducto/${product.imagen_url}`}
+                  src={product.imagen_url}
                   alt={product.titulo}
                   className={style.productImage}
                   width={500}
