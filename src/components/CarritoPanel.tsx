@@ -98,33 +98,36 @@ const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
         </div>
         <button className={styles.closeButton} onClick={onClose}>✖</button>
       </div>
-
       {carrito?.length > 0 ? (
-        <ul className={styles.listaCarrito}>
-          {carrito.map((producto) => (
-            <li key={producto.id} className={styles.carritoItem}>
-              <Image
-                src={`https://stickeando.onrender.com/api/imagenProducto/${producto.imagen_url}`}
-                alt={producto.titulo}
-                className={styles.carritoImagen}
-                width={500}
-                height={500}
-              />
-              <div className={styles.carritoInfo}>
-                <h3>{producto.titulo}</h3>
-                <p>Cantidad: {producto.cantidad}</p>
-                <p>Precio: ${producto.precio}</p>
-              </div>
+  <ul className={styles.listaCarrito}>
+    {carrito.map((producto) => (
+      <li key={`${producto.carrito_id}-${producto.id}`} className={styles.carritoItem}>
+        {producto.imagen_url ? (
+          <Image
+            src={producto.imagen_url}
+            alt={producto.titulo || "Imagen de producto"}
+            className={styles.carritoImagen}
+            width={500}
+            height={500}
+          />
+        ) : (
+          <span>Sin imagen</span>
+        )}
+        <div className={styles.carritoInfo}>
+          <h3>{producto.titulo}</h3>
+          <p>Cantidad: {producto.cantidad}</p>
+          <p>Precio: ${producto.precio}</p>
+        </div>
 
-              <button className={styles.buttonDelete} onClick={() => eliminarProducto(producto.id)}>
-                ❌
-              </button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className={styles.carritoVacio}>Tu carrito está vacío.</p>
-      )}
+        <button className={styles.buttonDelete} onClick={() => eliminarProducto(producto.id)}>
+          ❌
+        </button>
+      </li>
+    ))}
+  </ul>
+) : (
+  <p className={styles.carritoVacio}>Tu carrito está vacío.</p>
+)}
 
       <div className={styles.carritoFooter}>
         <button className={styles.botonComprar} onClick={generarMensajeWhatsApp}>

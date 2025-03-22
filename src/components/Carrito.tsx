@@ -99,7 +99,7 @@ const Carrito = () => {
                 <div className={styles.producto}>
                   <Image
                   className={styles.imagenProducto}
-                    src={`https://stickeando.onrender.com/api/imagenProducto/${carritoProducto.imagen_url}`} // Aquí se muestra la imagen
+                    src={carritoProducto.imagen_url} // Aquí se muestra la imagen
                     alt={carritoProducto.titulo}
                     width={100}
                     height={100}
