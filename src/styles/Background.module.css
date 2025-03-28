@@ -116,7 +116,7 @@
     }
   }
 
-  /* Pantallas de escritorio medianas o netbooks*/
+  /* Pantallas de escritorio medianas o netbooks
   @media (min-width: 1024px) and (max-width: 1279px) {
     .tittle {
       font-size: 4.5rem;
@@ -126,4 +126,21 @@
       font-size: 0.9rem;
       transform: translate(-50%, -70%);
     }
+  } */
+
+  @media (min-width: 1024px) and (max-width: 1366px) and (min-height: 600px) and (max-height: 768px) {
+    .tittle {
+      font-size: 4.5rem;
+    }
+  
+    .subtittle {
+      font-size: 0.9rem;
+      transform: translate(-50%, -60%);
+    }
+
+    .categoriesContainer {
+      margin-bottom: 30vh;
+    }
   }
+  
+

@@ -85,3 +85,46 @@
     }
 
 }
+
+.editButton {
+  border: none;
+  background-color: #22aaff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.editPanel {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonGuardar {
+  border: none;
+  background-color: #0890ff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 4px;
+  border: 1px solid black;
+  width: 100%;
+}
+
+.buttonCancel {
+  margin-top: 4px;
+  border: 1px solid black;
+  background-color: #ffffff;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+}
