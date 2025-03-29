@@ -138,6 +138,13 @@
   display: flex;
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+}
+
 /* Celular */
 @media (min-width: 0px) and (max-width: 479px) {
   .carritoLink {
@@ -223,6 +230,13 @@
   .register {
     padding: 1vh 1vh;
   }
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
 }
 
 /* Media entre tablet y pantalla*/

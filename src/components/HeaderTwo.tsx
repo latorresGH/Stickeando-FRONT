@@ -67,7 +67,7 @@ const Header = () => {
           <div>
             <div className={styles.menuLinks}>
               <li className={styles.active}>
-                <Link href="/products">Productos</Link>
+                {/* <Link href="/products">Productos</Link> */}
               </li>
               <li className={styles.active}>
                 {/* <Link href="/contacto">Contacto</Link> */}

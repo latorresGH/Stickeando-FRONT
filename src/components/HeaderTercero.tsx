@@ -63,20 +63,21 @@ const Header = () => {
     <header className={styles.header}>
       <nav className={styles.navHeader}>
         <ul className={styles.menu}>
-          <Link href="/home">
-            <Image
-              className={styles.logo}
-              src="/images/logo-stickeando.png"
-              alt="Logo"
-              width={60}
-              height={60}
-            />
-          </Link>
+          <div className={styles.logoContainer}>
+            <Link href="/home">
+              <Image
+                className={styles.logo}
+                src="/images/logo-stickeando.png"
+                alt="Logo"
+                width={60}
+                height={60}
+              />
+            </Link>
+
+            <Link href="/products">Productos</Link>
+          </div>
           <div>
             <div className={styles.menuLinks}>
-              <li className={styles.active}>
-                <Link href="/products">Productos</Link>
-              </li>
               <li className={styles.active}>
                 {/* <Link href="/contacto">Contacto</Link> */}
               </li>
