@@ -2,58 +2,17 @@
 import React from "react";
 import { useCarrito } from "@/hook/useCarrito";
 import { useUser } from "@/context/authContext"; // Para obtener el usuario autenticado
+import { useOrden } from "@/hook/useOrden"; // Importamos el hook useOrden
 import styles from "@/styles/Carrito.module.css";
 import Image from "next/image";
-import { jsPDF } from "jspdf";
+
 
 const Carrito = () => {
+
   const { carrito, eliminarProducto } = useCarrito();
   const { user } = useUser(); // Obtener el usuario autenticado
+  const { crearOrden, loading, error } = useOrden(); // Desestructuramos la función y el estado de useOrden
   const telefonoVendedor = "5493425824554"; // Número de WhatsApp del vendedor
-
-  // Función para generar el PDF como Blob
-  const generarPDFBlob = () => {
-    const doc = new jsPDF();
-    const nombreUsuario = user ? user.nombre : "Cliente Anónimo";
-    const listaProductos = carrito
-      .map((producto) => `${producto.titulo} x${producto.cantidad}`)
-      .join("\n");
-
-    const precioTotal = carrito.reduce(
-      (total, producto) => total + Number(producto.precio) * Number(producto.cantidad),
-      0
-    );
-
-    doc.text(`Pedido de ${nombreUsuario}`, 10, 10);
-    doc.text(`Productos:\n${listaProductos}`, 10, 20);
-    doc.text(`Precio Total: $${precioTotal.toFixed(2)}`, 10, 40);
-
-    // Crear el Blob del PDF
-    const pdfBlob = doc.output("blob");
-    return pdfBlob;
-  };
-
-  const enviarPDFAlBackend = async (pdfBlob: Blob) => {
-    const formData = new FormData();
-    formData.append("file", pdfBlob);
-    formData.append("carrito", JSON.stringify(carrito));
-    formData.append("usuario", JSON.stringify(user || {}));
-
-    const response = await fetch("https://stickeando.onrender.com/api/generarPDF", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log("PDF generado con éxito");
-
-      // Aquí devolvemos la URL completa del archivo PDF generado
-      return data.filePath;
-    } else {
-      console.error("Error al generar el PDF");
-    }
-  };
 
   const generarMensajeWhatsApp = async () => {
     if (carrito.length === 0) {
@@ -61,10 +20,12 @@ const Carrito = () => {
       return;
     }
 
-    console.log("Carrito antes de generar el PDF:", carrito);  // Verificar los productos en el carrito
-
-    const pdfBlob = generarPDFBlob();  // Función para obtener el PDF como Blob
-    const urlArchivo = await enviarPDFAlBackend(pdfBlob);  // Subir el archivo y obtener la URL
+    // Realizar la orden
+    const ordenId = await crearOrden(); // Usamos la función para crear la orden
+    if (!ordenId) {
+      alert("Hubo un error al crear la orden.");
+      return;
+    }
 
     const nombreUsuario = user ? user.nombre : "Cliente Anónimo";
     const listaProductos = carrito
@@ -76,15 +37,13 @@ const Carrito = () => {
       0
     );
 
-    // Aquí usamos la URL completa devuelta por el backend
     const mensaje = `Hola, soy ${nombreUsuario}. Quisiera comprar los siguientes stickers:\n\n${listaProductos}\n\nPrecio Total: $${precioTotal.toFixed(
       2
-    )}\n\nAquí está el PDF de mi pedido: ${urlArchivo}`;
+    )}\n\nOrden ID: ${ordenId}`;
 
     const urlWhatsApp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(mensaje)}`;
     window.open(urlWhatsApp, "_blank");
   };
-
 
   return (
     <div>

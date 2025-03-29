@@ -137,7 +137,15 @@ export const useCarrito = () => {
     }
   };
   
-  
+    const vaciarCarrito = async () => {
+      try {
+          await axios.delete(`https://stickeando.onrender.com/api/carrito/${carritoId}`); // Endpoint para vaciar el carrito
+          setCarrito([]); // Vaciar el estado local
+      } catch (error) {
+          console.error("Error al vaciar el carrito:", error);
+      }
+  };
+
 
   const eliminarProducto = async (productoId: number) => {
     if (!user) {
@@ -173,5 +181,5 @@ export const useCarrito = () => {
   };
   
 
-  return { carrito, agregarAlCarrito, fetchCarrito, eliminarProducto, carritoId };
+  return { carrito, agregarAlCarrito, fetchCarrito, eliminarProducto, vaciarCarrito, carritoId };
 };
