@@ -285,3 +285,26 @@
       right: 37%;
     }
   }
+
+  @media (min-width: 1024px) and (max-width: 1366px) and (min-height: 600px) and (max-height: 768px) {
+
+    .loginButton {
+      height: 5vh;
+      width: 10vw;
+    }
+
+    .registerButton {
+      height: 5vh;
+      width: 10vw;
+    }
+
+
+    .form input {
+      width: 100%;
+    }
+
+    .inputIcons {
+      position: absolute;
+      right: 40%;
+    }
+  }
