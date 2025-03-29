@@ -23,6 +23,7 @@ interface CarritoProducto {
 export const useCarrito = () => {
   const { carrito, setCarrito } = useCarritoContext();
   const [carritoId, setCarritoId] = useState<number | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false); // Estado para controlar el "debounce"
   const { user } = useUser();
 
   const fetchCarrito = useCallback(async () => {
@@ -50,74 +51,42 @@ export const useCarrito = () => {
 
   const agregarAlCarrito = async (producto: Producto) => {
     if (!user) {
-      // Si el usuario no está logueado, usamos localStorage
-      const carritoLocal = JSON.parse(localStorage.getItem("carrito") || "[]");
+      alert("Debes iniciar sesión para agregar productos al carrito");
+      return;
+    }
   
-      // Verificamos si el producto ya está en el carrito
-      const productoExistente = carritoLocal.find(
-        (item: CarritoProducto) => item.producto_id === producto.id
+    // Bloquear múltiples clics rápidos
+    if (isProcessing) return;
+    setIsProcessing(true);
+  
+    try {
+      // Obtener el carrito del usuario
+      const carritoResponse = await axios.get<{ carrito: { id: number } }>(
+        `https://stickeando.onrender.com/api/carrito/${user.id}`
       );
+      const carrito_id = carritoResponse.data.carrito.id;
   
-      if (productoExistente) {
-        // Si el producto ya está en el carrito, aumentamos la cantidad
-        productoExistente.cantidad += 1;
-      } else {
-        // Si no está en el carrito, lo agregamos
-        carritoLocal.push({
-          id: producto.id,
-          producto_id: producto.id,
-          cantidad: 1,
-          titulo: producto.titulo,
-          precio: producto.precio.toString(),
-          imagen_url: producto.imagen_url,
-          carrito_id: null, // No necesitamos carrito_id si no estamos logueados
-        });
+      if (!carrito_id) {
+        alert("No se ha encontrado un carrito para el usuario");
+        return;
       }
   
-      // Guardamos el carrito en localStorage
-      localStorage.setItem("carrito", JSON.stringify(carritoLocal));
+      // Enviar el producto al backend (agregar o actualizar)
+      await axios.post("https://stickeando.onrender.com/api/carritoProductos/add", {
+        carrito_id,
+        producto_id: producto.id,
+        cantidad: 1, // O la cantidad que desees agregar
+      });
   
-      // Actualizamos el estado con el carrito de localStorage
-      setCarrito(carritoLocal);
-      alert("Producto agregado al carrito (local)");
-    } else {
-      // Si el usuario está logueado, agregamos al carrito del backend
-      try {
-        const carritoResponse = await axios.get<{ carrito: { id: number } }>(
-          `https://stickeando.onrender.com/api/carrito/${user.id}`
-        );
-        const carrito_id = carritoResponse.data.carrito.id;
-  
-        if (!carrito_id) {
-          alert("No se ha encontrado un carrito para el usuario");
-          return;
-        }
-  
-        // Verificar si el producto ya está en el carrito
-        const productoExistente = carrito.find((p) => p.producto_id === producto.id);
-  
+      // Actualizar el carrito localmente
+      setCarrito((prevCarrito) => {
+        const productoExistente = prevCarrito.find((p) => p.producto_id === producto.id);
+        
         if (productoExistente) {
-          // Si el producto ya está en el carrito, actualizamos la cantidad
-          await axios.put(`https://stickeando.onrender.com/api/productos/actualizar-producto`, {
-            carrito_id,
-            producto_id: producto.id,
-            cantidad: productoExistente.cantidad + 1, // Incrementa la cantidad
-          });
-  
-          // Actualizar el estado del carrito sumando la cantidad del producto existente
-          setCarrito((prevCarrito) =>
-            prevCarrito.map((p) =>
-              p.producto_id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p
-            )
+          return prevCarrito.map((p) =>
+            p.producto_id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p
           );
         } else {
-          // Si el producto no está en el carrito, lo agregamos
-          await axios.post("https://stickeando.onrender.com/api/carritoProductos/add", {
-            carrito_id,
-            producto_id: producto.id,
-            cantidad: 1,
-          });
-  
           const nuevoProducto: CarritoProducto = {
             id: producto.id,
             carrito_id,
@@ -127,15 +96,20 @@ export const useCarrito = () => {
             precio: producto.precio.toString(),
             imagen_url: producto.imagen_url,
           };
-  
-          setCarrito((prevCarrito) => [...prevCarrito, nuevoProducto]);
+          return [...prevCarrito, nuevoProducto];
         }
-      } catch (error) {
-        console.error("Error al agregar producto al carrito", error);
-        alert("Error al agregar producto al carrito");
-      }
+      });
+  
+    } catch (error) {
+      console.error("Error al agregar producto al carrito", error);
+      alert("Error al agregar producto al carrito");
+    } finally {
+      // Desbloquear el botón después de la solicitud
+      setIsProcessing(false);
     }
   };
+  
+  
   
     const vaciarCarrito = async () => {
       try {
