@@ -8,15 +8,11 @@ interface OrdenResponse {
   orden_id: number;
 }
 
-
-
 export const useOrden = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { carrito, vaciarCarrito } = useCarrito();
   const { user } = useUser();
-
-
   
   const crearOrden = async (): Promise<number | null> => {
     if (!user) {
@@ -57,7 +53,7 @@ export const useOrden = () => {
       vaciarCarrito(); // Limpiar el carrito tras la compra
       return response.data.orden_id;
     } catch (err) {
-      setError("Error al crear la orden. Inténtalo de nuevo.");
+      setError("Error al crear la orden. Inténtalo de nuevo." + err);
       return null;
     } finally {
       setLoading(false);

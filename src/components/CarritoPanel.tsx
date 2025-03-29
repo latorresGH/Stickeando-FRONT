@@ -4,7 +4,6 @@ import { useUser } from "@/context/authContext"; // Para obtener el usuario aute
 import styles from "@/styles/CarritoPanel.module.css";
 import { useOrden } from "@/hook/useOrden"; // Importamos el hook useOrden
 import Image from "next/image";
-import { jsPDF } from "jspdf";
 
 interface CarritoPanelProps {
   isOpen: boolean;
@@ -36,7 +35,8 @@ const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
       .join("\n");
 
     const precioTotal = carrito.reduce(
-      (total, producto) => total + Number(producto.precio) * Number(producto.cantidad),
+      (total, producto) =>
+        total + Number(producto.precio) * Number(producto.cantidad),
       0
     );
 
@@ -44,7 +44,9 @@ const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
       2
     )}\n\nOrden ID: ${ordenId}`;
 
-    const urlWhatsApp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(mensaje)}`;
+    const urlWhatsApp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(
+      mensaje
+    )}`;
     window.open(urlWhatsApp, "_blank");
   };
 
@@ -54,12 +56,17 @@ const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
         <div className={styles.tituloCarrito}>
           <h2>Carrito de compras</h2>
         </div>
-        <button className={styles.closeButton} onClick={onClose}>✖</button>
+        <button className={styles.closeButton} onClick={onClose}>
+          ✖
+        </button>
       </div>
       {carrito?.length > 0 ? (
         <ul className={styles.listaCarrito}>
           {carrito.map((producto) => (
-            <li key={`${producto.carrito_id}-${producto.id}`} className={styles.carritoItem}>
+            <li
+              key={`${producto.carrito_id}-${producto.id}`}
+              className={styles.carritoItem}
+            >
               {producto.imagen_url ? (
                 <Image
                   src={producto.imagen_url}
@@ -77,7 +84,10 @@ const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
                 <p>Precio: ${producto.precio}</p>
               </div>
 
-              <button className={styles.buttonDelete} onClick={() => eliminarProducto(producto.id)}>
+              <button
+                className={styles.buttonDelete}
+                onClick={() => eliminarProducto(producto.id)}
+              >
                 ❌
               </button>
             </li>
@@ -95,7 +105,8 @@ const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
         >
           {loading ? "Cargando..." : "Iniciar compra"}
         </button>
-        {error && <p className={styles.errorMessage}>{error}</p>} {/* Mostrar error si ocurre */}
+        {error && <p className={styles.errorMessage}>{error}</p>}{" "}
+        {/* Mostrar error si ocurre */}
       </div>
     </div>
   );
