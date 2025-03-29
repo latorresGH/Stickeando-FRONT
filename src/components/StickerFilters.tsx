@@ -11,7 +11,7 @@ const CategoryFilterPanel: React.FC = () => {
 
     useEffect(() => {
         axios.get<Categoria[]>('https://stickeando.onrender.com/api/categorias/all')
-            .then(response => setCategories(response.data))
+            .then(response => setCategories(response.data.reverse()))
             .catch(error => console.error('Error al obtener categorías:', error));
     }, []);
 

@@ -34,7 +34,7 @@ export const useAdminPanel = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get<Categoria[]>('https://stickeando.onrender.com/api/categorias/all');
-      setCategories(response.data);
+      setCategories(response.data.reverse());
     } catch (error) {
       console.error('Error fetching categories:', error);
     }

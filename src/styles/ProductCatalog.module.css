@@ -283,3 +283,12 @@
     width: 1rem;
   }
   }
+
+  @media (min-width: 1024px) and (max-width: 1366px) and (min-height: 600px) and (max-height: 768px) {
+
+    .productList {
+      margin-top: 10vh;
+      margin-bottom: 10vh;
+    }
+  }
+  
