@@ -5,7 +5,9 @@ import axios from "axios";
 
 type UserContextType = {
   user: Usuario | null;
+  token: string | null; // Agregar el token por separado
   setUser: (user: Usuario | null) => void;
+  setToken: (token: string | null) => void;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 };
@@ -14,6 +16,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<Usuario | null>(null);
+  const [token, setToken] = useState<string | null>(null); // Estado para el token
 
   // Cargar usuario al iniciar
   useEffect(() => {
@@ -25,8 +28,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+    setToken(storedToken); // Almacenamos el token
 
-    console.log("Token encontrado:", storedToken); // Depuración
     axios
       .get("https://stickeando.onrender.com/api/auth/me")
       .then((response) => {
@@ -36,11 +39,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       .catch((error) => {
         if (error.response?.status === 401) {
           console.log("Token inválido o expirado, cerrando sesión automáticamente.");
-
-
-          
           localStorage.removeItem("token");
           setUser(null);
+          setToken(null); // Limpiar token
           delete axios.defaults.headers.common["Authorization"];
         } else {
           console.error("Error al obtener el usuario:", error);
@@ -55,6 +56,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       localStorage.setItem("token", token);
       setUser(user);
+      setToken(token); // Almacenamos el token
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
@@ -65,11 +67,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
+    setToken(null); // Limpiar token
     delete axios.defaults.headers.common["Authorization"];
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, login, logout }}>
+    <UserContext.Provider value={{ user, token, setUser, setToken, login, logout }}>
       {children}
     </UserContext.Provider>
   );
