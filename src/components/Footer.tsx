@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
             
             <div className={styles.info}>
                 <span>Contacto</span>
-                <p>Dirección: Santa Fe 1040</p>
+                <p>Dirección: Santa Fe 1040 (Recreo, Santa Fe)</p>
                 <p>Teléfono: <a className={styles.textA} href="tel:+543425824554">+54 9 3425 82-4554</a></p>
             </div>
         </div>
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
           <ul className={styles.urderList}>
             <li><a className={styles.textA} href="/home">Inicio</a></li>
             <li><a className={styles.textA} href="/products">Productos</a></li>
-            <li><a className={styles.textA} href="/contacto">Contacto</a></li>
+            {/* <li><a className={styles.textA} href="/contacto">Contacto</a></li> */}
             <li><a className={styles.textA} href="/profile">Perfil</a></li>
           </ul>
         </div>
@@ -44,14 +44,14 @@ const Footer: React.FC = () => {
 
         <div className={styles.info}>
           <span className={styles.tittleH3}>Formas de Pago</span>
-          <p>Pago solo en efectivo</p>
+          <p>Efectivo / Transferencia</p>
         </div>
         
       </div>
         <div className={styles.copyright}>
           <p>&copy; {new Date().getFullYear()} Stickeando. Todos los derechos reservados.</p>
 
-          <p className={styles.webHecha}>Web hecha por: <a href="https://github.com/latorresGH"><span className={styles.nombre}>Laureano Torres</span></a></p>
+          <p className={styles.webHecha}>Web realizada por: <a href="https://github.com/latorresGH"><span className={styles.nombre}>Laureano Torres</span></a></p>
         </div>
     </footer>
   );
