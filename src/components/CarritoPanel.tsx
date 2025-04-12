@@ -23,6 +23,7 @@ const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
     }
 
     // Realizar la orden
+    console.log("Usuario logueado:", user); // 👈
     const ordenId = await crearOrden(); // Usamos la función para crear la orden
     if (!ordenId) {
       alert("Hubo un error al crear la orden.");

@@ -145,7 +145,7 @@ const AdminOrdenes = () => {
               Ver productos de la orden
             </button>
 
-            <button className={styles.buttonEliminar} onClick={() => eliminarOrden(orden.id)}>
+            <button className={styles.buttonObtener} onClick={() => eliminarOrden(orden.id)}>
               Borrar orden
             </button>
 

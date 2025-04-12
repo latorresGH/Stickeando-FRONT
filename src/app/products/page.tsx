@@ -8,7 +8,7 @@ export default function Products () {
   return (
     <div>
       <HeaderTwo></HeaderTwo>
-      <Suspense fallback={<p>Cargando productos...</p>}>
+      <Suspense fallback={<p>Cargando productos...Esto puede llegar a demorar hasta 50s si el servidor estaba inactivo..</p>}>
         <ProductCatalog />
       </Suspense>
       <Footer></Footer>
