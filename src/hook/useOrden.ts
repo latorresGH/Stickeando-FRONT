@@ -16,7 +16,7 @@ export const useOrden = () => {
   
   const crearOrden = async (): Promise<number | null> => {
     
-    const userId = user?.id || null;
+    const userId = user?.id || 0;
 
     console.log("ID que se va a enviar:", userId); // 👈
 
