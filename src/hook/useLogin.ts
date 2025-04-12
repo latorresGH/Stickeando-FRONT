@@ -14,7 +14,7 @@ export const useLogin = () => {
       window.location.href = "/home"; // Redirige al usuario a la página principal
     } catch (err) {
       console.error("Error en el login:", err); // Muestra el error en la consola
-      setError("Credenciales incorrectas o problemas en el servidor");
+      setError("Credenciales incorrectas");
     }
   };
 
