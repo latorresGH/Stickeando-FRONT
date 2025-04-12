@@ -109,6 +109,27 @@ const AdminOrdenes = () => {
     setOrdenSeleccionada(null);
   };
 
+  const eliminarOrden = async (id: number) => {
+    const confirmacion = window.confirm("¿Estás seguro que querés borrar esta orden?");
+    if (!confirmacion) return;
+  
+    try {
+      const response = await fetch(`https://stickeando.onrender.com/api/ordenes/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) throw new Error("Error al eliminar la orden");
+  
+      // Actualizar estado
+      setOrdenes((prev) => prev.filter((orden) => orden.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.contenedor}>
 
@@ -122,6 +143,10 @@ const AdminOrdenes = () => {
             
             <button className={styles.buttonObtener} onClick={() => obtenerOrdenConProductos(orden.id)}>
               Ver productos de la orden
+            </button>
+
+            <button className={styles.buttonEliminar} onClick={() => eliminarOrden(orden.id)}>
+              Borrar orden
             </button>
 
             {orden.estado === "pendiente" && (
