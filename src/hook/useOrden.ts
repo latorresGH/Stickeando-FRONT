@@ -15,11 +15,6 @@ export const useOrden = () => {
   const { user } = useUser();
   
   const crearOrden = async (): Promise<number | null> => {
-    if (!user) {
-      setError("Debes estar autenticado para realizar una compra.");
-      return null;
-    }
-
     if (carrito.length === 0) {
       setError("El carrito está vacío.");
       return null;
@@ -29,31 +24,42 @@ export const useOrden = () => {
     setError(null);
 
     try {
-        const total = carrito.reduce(
-            (sum, producto) => sum + Number(producto.precio) * Number(producto.cantidad),
-            0
-        );
-        
-
+      const total = carrito.reduce(
+        (sum, producto) => sum + Number(producto.precio) * Number(producto.cantidad),
+        0
+      );
+      
       const productos = carrito.map((producto) => ({
         producto_id: producto.id,
         cantidad: producto.cantidad,
         precio: producto.precio,
       }));
 
-      const response = await axios.post<OrdenResponse>(
-        "https://stickeando.onrender.com/api/ordenes",
-        {
-          usuario_id: user.id,
-          productos,
-          total,
-        }
-      );
+      // Determinar la ruta y payload correctos según si el usuario está autenticado
+      const endpoint = user 
+        ? "https://stickeando.onrender.com/api/ordenes"
+        : "https://stickeando.onrender.com/api/ordenes/anonimas";
+      
+      const payload = user 
+        ? { usuario_id: user.id, productos, total }
+        : { productos, total }; // No enviamos usuario_id para órdenes anónimas
 
-      vaciarCarrito(); // Limpiar el carrito tras la compra
-      return response.data.orden_id;
+      console.log("Haciendo request con el payload:", payload);
+
+      const response = await axios.post<OrdenResponse>(endpoint, payload);
+
+      console.log("Respuesta recibida:", response.data);
+
+      if (response.data.orden_id) {
+        vaciarCarrito(); // Limpiar el carrito tras la compra
+        return response.data.orden_id;
+      } else {
+        setError("Error al crear la orden. No se recibió el ID de la orden.");
+        return null;
+      }
     } catch (err) {
-      setError("Error al crear la orden. Inténtalo de nuevo." + err);
+      console.error("Error al crear orden:", err);
+      setError("Error al crear la orden. Inténtalo de nuevo.");
       return null;
     } finally {
       setLoading(false);

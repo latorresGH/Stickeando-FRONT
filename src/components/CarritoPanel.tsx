@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCarrito } from "@/hook/useCarrito";
-import { useUser } from "@/context/authContext"; // Para obtener el usuario autenticado
+import { useUser } from "@/context/authContext";
 import styles from "@/styles/CarritoPanel.module.css";
-import { useOrden } from "@/hook/useOrden"; // Importamos el hook useOrden
+import { useOrden } from "@/hook/useOrden";
 import Image from "next/image";
 
 interface CarritoPanelProps {
@@ -12,43 +12,68 @@ interface CarritoPanelProps {
 
 const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
   const { carrito, eliminarProducto } = useCarrito();
-  const { user } = useUser(); // Obtener el usuario autenticado
-  const { crearOrden, loading, error } = useOrden(); // Desestructuramos la función y el estado de useOrden
-  const telefonoVendedor = "5493425824554"; // Número de WhatsApp del vendedor
+  const { user } = useUser();
+  const { crearOrden, loading, error } = useOrden();
+  const telefonoVendedor = "5493425824554";
+  const [clienteNombre, setClienteNombre] = useState("");
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
-  const generarMensajeWhatsApp = async () => {
+  const iniciarCompra = async () => {
     if (carrito.length === 0) {
       alert("Tu carrito está vacío.");
       return;
     }
 
+    // Si el usuario está logueado, procedemos normalmente
+    if (user) {
+      generarMensajeWhatsApp(user.nombre);
+    } else {
+      // Si no está logueado, mostramos el formulario para ingresar nombre
+      setMostrarFormulario(true);
+    }
+  };
+
+  const confirmarOrdenAnonima = () => {
+    if (!clienteNombre.trim()) {
+      alert("Por favor ingresa tu nombre para continuar.");
+      return;
+    }
+    generarMensajeWhatsApp(clienteNombre);
+    setMostrarFormulario(false);
+  };
+
+  const generarMensajeWhatsApp = async (nombreCliente: string) => {
     // Realizar la orden
-    const ordenId = await crearOrden(); // Usamos la función para crear la orden
+    console.log("Generando orden para el cliente:", nombreCliente);
+    const ordenId = await crearOrden();
+  
+    // Si no se crea la orden correctamente, no continuar
     if (!ordenId) {
+      console.error("Hubo un error al crear la orden, ordenId es nulo");
       alert("Hubo un error al crear la orden.");
       return;
     }
-
-    const nombreUsuario = user ? user.nombre : "Cliente Anónimo";
+  
     const listaProductos = carrito
       .map((producto) => `- ${producto.titulo} x${producto.cantidad}`)
       .join("\n");
-
+  
     const precioTotal = carrito.reduce(
       (total, producto) =>
         total + Number(producto.precio) * Number(producto.cantidad),
       0
     );
-
-    const mensaje = `Hola, soy ${nombreUsuario}. Quisiera comprar los siguientes stickers:\n\n${listaProductos}\n\nPrecio Total: $${precioTotal.toFixed(
+  
+    const mensaje = `Hola, soy ${nombreCliente}. Quisiera comprar los siguientes stickers:\n\n${listaProductos}\n\nPrecio Total: $${precioTotal.toFixed(
       2
     )}\n\nOrden ID: ${ordenId}`;
-
+  
     const urlWhatsApp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(
       mensaje
     )}`;
     window.open(urlWhatsApp, "_blank");
   };
+  
 
   return (
     <div className={`${styles.carritoPanel} ${isOpen ? styles.open : ""}`}>
@@ -98,15 +123,41 @@ const CarritoPanel: React.FC<CarritoPanelProps> = ({ isOpen, onClose }) => {
       )}
 
       <div className={styles.carritoFooter}>
-        <button
-          className={styles.botonComprar}
-          onClick={generarMensajeWhatsApp}
-          disabled={loading} // Deshabilitar mientras está cargando
-        >
-          {loading ? "Cargando..." : "Iniciar compra"}
-        </button>
-        {error && <p className={styles.errorMessage}>{error}</p>}{" "}
-        {/* Mostrar error si ocurre */}
+        {mostrarFormulario ? (
+          <div className={styles.formCompra}>
+            <input
+              type="text"
+              placeholder="Tu nombre"
+              value={clienteNombre}
+              onChange={(e) => setClienteNombre(e.target.value)}
+              className={styles.inputNombre}
+            />
+            <div className={styles.botonesFormulario}>
+              <button
+                onClick={confirmarOrdenAnonima}
+                className={styles.botonComprar}
+                disabled={loading}
+              >
+                {loading ? "Cargando..." : "Confirmar"}
+              </button>
+              <button
+                onClick={() => setMostrarFormulario(false)}
+                className={styles.botonCancelar}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        ) : (
+          <button
+            className={styles.botonComprar}
+            onClick={iniciarCompra}
+            disabled={loading}
+          >
+            {loading ? "Cargando..." : "Iniciar compra"}
+          </button>
+        )}
+        {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
     </div>
   );
