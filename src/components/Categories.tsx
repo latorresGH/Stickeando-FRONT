@@ -14,63 +14,64 @@ const Categories = () => {
     <div className={style.imagenesContenedor}>
       <div className={style.categories}>
         <div className={style.categoriaSeccion}>
-          <Link href="/products?category=1">
+          <Link href="/products?category=28">
             <div className={style.categoriaSeccionImage1}>
               <Image
-                src="/images/CategoriaSimpsons.png"
-                alt="Imagen categoria los Simpsons"
+                src="/images/CategoriaEncendedores.png"
+                alt="Imagen categoria los encendedores de la tienda"
                 className="categoriaImagenSeccion1"
                 width={300}
                 height={300}
               />
             </div>
           </Link>
-          <p>Los Simpsons</p>
+          <p>Encendedores</p>
         </div>
 
         <div className={style.categoriaSeccion}>
-          <Link href="/products?category=2">
+          <Link href="/products?category=11">
             <div className={style.categoriaSeccionImage2}>
               <Image
-                src="/images/CategoriaAnimados.png"
-                alt="Imagen categoria animados"
+                
+                src="/images/CategoriaArgentina.webp"
+                alt="Imagen categoria stickers de Argentina"
                 className="categoriaImagenSeccion2"
                 width={300}
                 height={300}
               />
             </div>
           </Link>
-          <p>Animados</p>
+          <p>Argentina</p>
         </div>
 
         <div className={style.categoriaSeccion}>
-          <Link href="/products?category=3">
+          <Link href="/products?category=33">
             <div className={style.categoriaSeccionImage3}>
               <Image
-                src="/images/CategoriaArgentinos.png"
-                alt="Imagen categoria Argentinos"
+                src="/images/CategoriaAnime.webp"
+                alt="Imagen categoria stickers de Anime"
                 className="categoriaImagenSeccion3"
                 width={300}
                 height={300}
               />
             </div>
           </Link>
-          <p>Argentinos</p>
+          <p>Anime</p>
         </div>
 
         <div className={style.categoriaSeccion}>
-          <Link href="/products?category=4">
+          <Link href="/products?category=25">
             <div className={style.categoriaSeccionImage4}>
               <Image
-                src="/images/CategoriaSignos.png"
-                alt="Imagen categoria de Signos"
+                src="/images/CategoriaFlores.webp"
+                alt="Imagen categoria de stickers de flores"
                 className="categoriaImagenSeccion4"
                 width={300}
                 height={300}
               />
             </div>
           </Link>
-          <p>Signos</p>
+          <p>Flores</p>
         </div>
       </div>
     </div>
