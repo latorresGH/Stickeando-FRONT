@@ -12,13 +12,13 @@ export const useOrden = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { carrito, vaciarCarrito } = useCarrito();
-  const { user, token } = useUser();
+  const { user } = useUser();
   
   const crearOrden = async (): Promise<number | null> => {
-    
-    const userId = user?.id || 0;
-
-    console.log("ID que se va a enviar:", userId); // 👈
+    if (!user) {
+      setError("Debes estar autenticado para realizar una compra.");
+      return null;
+    }
 
     if (carrito.length === 0) {
       setError("El carrito está vacío.");
@@ -44,18 +44,11 @@ export const useOrden = () => {
       const response = await axios.post<OrdenResponse>(
         "https://stickeando.onrender.com/api/ordenes",
         {
-          usuario_id: user?.id || 0,  // Enviar el ID del usuario si está logueado, si no enviar 0
+          usuario_id: user.id,
           productos,
           total,
-        },
-        {
-          headers: {
-            "Authorization": `Bearer ${token || ''}`  // Usar el token desde el contexto, si no está, enviar un token vacío
-          }
         }
       );
-      
-      
 
       vaciarCarrito(); // Limpiar el carrito tras la compra
       return response.data.orden_id;
