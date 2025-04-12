@@ -195,6 +195,10 @@
       width: 150px;
     }
 
+    .botonCancelar {
+      width: 150px;
+    }
+
     .logoSVG {
       width: 20px;
       height: 20px;
@@ -216,6 +220,10 @@
   }
 
   .botonComprar {
+    width: 150px;
+  }
+
+  .botonCancelar {
     width: 150px;
   }
 
@@ -241,6 +249,9 @@
   .botonComprar {
     width: 150px;
   }
+  .botonCancelar {
+    width: 150px;
+  }
 
   .logoSVG {
     width: 20px;
@@ -263,6 +274,9 @@
   }
 
   .botonComprar {
+    width: 150px;
+  }
+  .botonCancelar {
     width: 150px;
   }
 
